@@ -7,9 +7,9 @@
       <el-header style="padding: 0px;">
         <HeadBar></HeadBar>
       </el-header>
-      <el-main>
+      <el-main style="background-color:#EEEEEE;">
         <el-row :gutter="20">
-          <el-col :span="8">
+          <el-col :lg="8">
             <el-card class="box-card" body-style="padding: 15px">
               <div slot="header" style="display:flex; align-items:center; justify-content:space-around;">
                 <el-avatar shape="square" :size="60" :src="squareUrl"></el-avatar>
@@ -22,7 +22,7 @@
               </div>
             </el-card>
           </el-col>
-          <el-col :span="4">
+          <el-col :xs="12" :sm="12" :md="6" :lg="4">
             <el-card class="box-card">
               <div class="text item" style="display:flex; align-items:center; justify-content:space-around;">
                 <span style="color: darkgrey;"><i class="el-icon-video-play"></i> 播放</span><span>999</span>
@@ -34,7 +34,7 @@
               </div>
             </el-card>
           </el-col>
-          <el-col :span="4">
+          <el-col :xs="12" :sm="12" :md="6" :lg="4">
             <el-card class="box-card">
               <div class="text item" style="display:flex; align-items:center; justify-content:space-around;">
                 <span style="color: darkgrey;"><i class="el-icon-user"></i> 粉丝</span><span>999</span>
@@ -46,7 +46,7 @@
               </div>
             </el-card>
           </el-col>
-          <el-col :span="4">
+          <el-col :xs="12" :sm="12" :md="6" :lg="4">
             <el-card class="box-card">
               <div class="text item" style="display:flex; align-items:center; justify-content:space-around;">
                 <span style="color: darkgrey;"><i class="el-icon-thumb"></i> 点赞</span><span>999</span>
@@ -58,7 +58,7 @@
               </div>
             </el-card>
           </el-col>
-          <el-col :span="4">
+          <el-col :xs="12" :sm="12" :md="6" :lg="4">
             <el-card class="box-card">
               <div class="text item" style="display:flex; align-items:center; justify-content:space-around;">
                 <span style="color: darkgrey;"><i class="el-icon-chat-round"></i> 评论</span><span>999</span>
@@ -73,41 +73,47 @@
         </el-row>
 
         <el-row :gutter="20">
-          <el-col :span="8">
+          <el-col :lg="8">
             <el-card class="box-card">
               <el-timeline>
+                <el-timeline-item timestamp="2022/5/20" placement="top" color="#0bbd87">
+                  <el-card>
+                    <p>更新 Github 模板</p>
+                    <p>XUGW 提交于 2022/5/20 20:46</p>
+                  </el-card>
+                </el-timeline-item>
                 <el-timeline-item timestamp="2022/5/15" placement="top" color="#0bbd87">
                   <el-card>
-                    <h4>更新 Github 模板</h4>
+                    <p>更新 Github 模板</p>
                     <p>XUGW 提交于 2022/5/15 20:46</p>
                   </el-card>
                 </el-timeline-item>
                 <el-timeline-item timestamp="2022/5/8" placement="top" color="#0bbd87">
                   <el-card>
-                    <h4>更新 Github 模板</h4>
+                    <p>更新 Github 模板</p>
                     <p>XUGW 提交于 2022/5/8 20:46</p>
                   </el-card>
                 </el-timeline-item>
                 <el-timeline-item timestamp="2022/5/5" placement="top" color="#0bbd87">
                   <el-card>
-                    <h4>更新 Github 模板</h4>
+                    <p>更新 Github 模板</p>
                     <p>XUGW 提交于 2022/5/5 20:46</p>
                   </el-card>
                 </el-timeline-item>
               </el-timeline>
             </el-card>
           </el-col>
-          <el-col :span="16">
+          <el-col :lg="16">
             <el-card class="box-card">
               <div ref="lineChart" style="width: 100%; height: 300px;"></div>
             </el-card>
             <el-row :gutter="20">
-              <el-col :span="12">
+              <el-col :lg="12" :md="12">
                 <el-card class="box-card">
                   <div ref="pieChart" style="width: 100%; height: 300px;"></div>
                 </el-card>
               </el-col>
-              <el-col :span="12">
+              <el-col :lg="12" :md="12">
                 <el-card class="box-card">
                   <div ref="barChart" style="width: 100%; height: 300px;"></div>
                 </el-card>
@@ -135,26 +141,12 @@ export default {
   data() {
     return {
       squareUrl: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
-    }
-  },
-  mounted() {
-    this.getLine();
-    this.getPie();
-    this.getBar();
-  },
-  methods: {
-    getLine() {
-      let chartDom = this.$refs.lineChart;
-      let myChart = this.$echarts.init(chartDom);
-      let option = {
-        title: {
-          text: '周播放/阅读量',
-        },
+      lineOption: {
         tooltip: {
           trigger: 'axis'
         },
         legend: {
-          data: ['播放量', '阅读量']
+          data: ['播放', '阅读', '粉丝', '弹幕']
         },
         xAxis: {
           type: 'category',
@@ -165,26 +157,32 @@ export default {
         },
         series: [
           {
-            name: '播放量',
+            name: '播放',
             data: [150, 230, 224, 218, 135, 147, 260],
             type: 'line',
             smooth: true
           },
           {
-            name: '阅读量',
+            name: '阅读',
             data: [220, 182, 191, 234, 290, 330, 310],
             type: 'line',
             smooth: true
           },
+          {
+            name: '粉丝',
+            data: [150, 232, 201, 154, 190, 330, 410],
+            type: 'line',
+            smooth: true
+          },
+          {
+            name: '弹幕',
+            data: [520, 432, 601, 334, 590, 430, 620],
+            type: 'line',
+            smooth: true
+          },
         ]
-      };
-
-      option && myChart.setOption(option);
-    },
-    getPie() {
-      let chartDom = this.$refs.pieChart;
-      let myChart = this.$echarts.init(chartDom);
-      let option = {
+      },
+      pieOption: {
         tooltip: {
           trigger: 'item'
         },
@@ -214,22 +212,16 @@ export default {
               show: false
             },
             data: [
-              { value: 1048, name: 'Search Engine' },
-              { value: 735, name: 'Direct' },
-              { value: 580, name: 'Email' },
-              { value: 484, name: 'Union Ads' },
-              { value: 300, name: 'Video Ads' }
+              { value: 1048, name: 'Vue' },
+              { value: 735, name: 'JavaScript' },
+              { value: 580, name: 'elementUI' },
+              { value: 484, name: 'HTML' },
+              { value: 300, name: 'CSS' }
             ]
           }
         ]
-      };
-
-      option && myChart.setOption(option);
-    },
-    getBar() {
-      let chartDom = this.$refs.barChart;
-      let myChart = this.$echarts.init(chartDom);
-      let option = {
+      },
+      barOption: {
         tooltip: {
           trigger: 'axis',
           axisPointer: {
@@ -253,7 +245,7 @@ export default {
         },
         series: [
           {
-            name: 'Direct',
+            name: 'JavaScript',
             type: 'bar',
             stack: 'total',
             label: {
@@ -265,19 +257,7 @@ export default {
             data: [320, 302, 301, 334, 390, 330, 320]
           },
           {
-            name: 'Mail Ad',
-            type: 'bar',
-            stack: 'total',
-            label: {
-              show: true
-            },
-            emphasis: {
-              focus: 'series'
-            },
-            data: [120, 132, 101, 134, 90, 230, 210]
-          },
-          {
-            name: 'Affiliate Ad',
+            name: 'HTML',
             type: 'bar',
             stack: 'total',
             label: {
@@ -289,7 +269,7 @@ export default {
             data: [220, 182, 191, 234, 290, 330, 310]
           },
           {
-            name: 'Video Ad',
+            name: 'CSS',
             type: 'bar',
             stack: 'total',
             label: {
@@ -301,12 +281,22 @@ export default {
             data: [150, 212, 201, 154, 190, 330, 410]
           }
         ]
-      };
-
-      option && myChart.setOption(option);
+      },
+    }
+  },
+  mounted() {
+    let lineChart = this.$echarts.init(this.$refs.lineChart);
+    this.lineOption && lineChart.setOption(this.lineOption);
+    let pieChart = this.$echarts.init(this.$refs.pieChart);
+    this.pieOption && pieChart.setOption(this.pieOption);
+    let barChart = this.$echarts.init(this.$refs.barChart);
+    this.barOption && barChart.setOption(this.barOption);
+    window.onresize = () => {
+      lineChart.resize()
+      pieChart.resize()
+      barChart.resize()
     }
   }
-
 }
 </script>
 

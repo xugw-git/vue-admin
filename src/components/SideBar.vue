@@ -1,6 +1,6 @@
 <template>
-  <el-menu class="el-menu-vertical-demo" :collapse="isCollapse" background-color="#545c64" text-color="#fff"
-    active-text-color="#ffd04b">
+  <el-menu class="el-menu-vertical-demo hidden-sm-and-down" :collapse="isCollapse" background-color="#545c64"
+    text-color="#fff" active-text-color="#ffd04b">
     <el-menu-item index="1">
       <i class="el-icon-s-home"></i>
       <span slot="title">首页</span>
@@ -55,6 +55,7 @@ export default {
 }
 
 .el-menu-vertical-demo {
-  height: 100%
+  height: 100%;
+  border: none
 }
 </style>
