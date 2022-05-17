@@ -2,9 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import NoteView from '../views/NoteView.vue'
-import ArticleView from '../views/ArticleView.vue'
-import CodeView from '../views/CodeView.vue'
-import LinkView from '../views/LinkView.vue'
+import ArticleList from '../views/ArticleList.vue'
+import ArticleCreate from '../views/ArticleCreate.vue'
+import RateView from '../views/RateView.vue'
 
 Vue.use(VueRouter)
 
@@ -20,19 +20,19 @@ const routes = [
     component: NoteView
   },
   {
-    path: '/article',
-    name: 'article',
-    component: ArticleView,
+    path: '/article/list',
+    name: 'list',
+    component: ArticleList,
   },
   {
-    path: '/code',
-    name: 'code',
-    component: CodeView
+    path: '/article/create',
+    name: 'create',
+    component: ArticleCreate,
   },
   {
-    path: '/link',
-    name: 'link',
-    component: LinkView
+    path: '/rate',
+    name: 'rate',
+    component: RateView
   },
 ]
 

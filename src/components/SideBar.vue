@@ -6,20 +6,27 @@
       <span slot="title">首页</span>
     </el-menu-item>
     <el-menu-item index="2" @click="linkRoute('note')">
-      <i class="el-icon-collection"></i>
-      <span slot="title">笔记</span>
+      <i class="el-icon-date"></i>
+      <span slot="title">便签</span>
     </el-menu-item>
-    <el-menu-item index="3" @click="linkRoute('code')">
-      <i class="el-icon-notebook-1"></i>
-      <span slot="title">代码</span>
+    <el-menu-item index="3" @click="linkRoute('rate')">
+      <i class="el-icon-star-off"></i>
+      <span slot="title">评分</span>
     </el-menu-item>
-    <el-menu-item index="4" @click="linkRoute('article')">
-      <i class="el-icon-document"></i>
-      <span slot="title">文章</span>
-    </el-menu-item>
-    <el-menu-item index="5" @click="linkRoute('link')">
-      <i class="el-icon-link"></i>
-      <span slot="title">链接</span>
+    <el-submenu index="4">
+      <template slot="title">
+        <i class="el-icon-notebook-1"></i>
+        <span>文章</span>
+      </template>
+      <el-menu-item-group>
+        <el-menu-item index="4-1" @click="linkRoute('list')"><i class="el-icon-menu"></i>文章列表</el-menu-item>
+        <el-menu-item index="4-2" @click="linkRoute('create')"><i class="el-icon-edit-outline"></i>新建文章
+        </el-menu-item>
+      </el-menu-item-group>
+    </el-submenu>
+    <el-menu-item index="5">
+      <i class="el-icon-lock"></i>
+      <span slot="title">权限</span>
     </el-menu-item>
   </el-menu>
 </template>
