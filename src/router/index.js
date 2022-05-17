@@ -5,8 +5,6 @@ import NoteView from '../views/NoteView.vue'
 import ArticleView from '../views/ArticleView.vue'
 import CodeView from '../views/CodeView.vue'
 import LinkView from '../views/LinkView.vue'
-import ArticleProject from '../views/ArticleProject.vue'
-import ArticleSoftware from '../views/ArticleSoftware.vue'
 
 Vue.use(VueRouter)
 
@@ -25,18 +23,6 @@ const routes = [
     path: '/article',
     name: 'article',
     component: ArticleView,
-    children: [
-      {
-        path: 'project',
-        name: 'project',
-        component: ArticleProject
-      },
-      {
-        path: 'software',
-        name: 'software',
-        component: ArticleSoftware
-      },
-    ]
   },
   {
     path: '/code',

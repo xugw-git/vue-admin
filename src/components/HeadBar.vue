@@ -1,9 +1,11 @@
 <template>
-    <el-header style="display:flex; align-items:center; justify-content:space-between; background-color: #CCCCCC;">
-        <div class="hidden-sm-and-down">
+    <el-header style="display:flex; align-items:center; justify-content:space-between;">
+        <div class="hidden-sm-and-down" style="display:flex; align-items:center;">
             <el-button @click="handleCollapse" icon="el-icon-menu" size="mini">
             </el-button>
-            <span style="margin-left: 20px;">首页</span>
+            <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-left: 20px;">
+                <el-breadcrumb-item v-for="(item, index) in crumbList" :key="index">{{ item }}</el-breadcrumb-item>
+            </el-breadcrumb>
         </div>
         <div class="hidden-md-and-up">
             <el-button @click="drawerMenu = true" icon="el-icon-menu" size="mini">
@@ -25,16 +27,10 @@
                     <i class="el-icon-notebook-1"></i>
                     <span slot="title">代码</span>
                 </el-menu-item>
-                <el-submenu index="4">
-                    <template slot="title">
-                        <i class="el-icon-document"></i>
-                        <span slot="title" @click="linkRoute('article')">文章</span>
-                    </template>
-                    <el-menu-item-group>
-                        <el-menu-item index="4-1" @click="linkRoute('project')">开源项目</el-menu-item>
-                        <el-menu-item index="4-2" @click="linkRoute('software')">软件工具</el-menu-item>
-                    </el-menu-item-group>
-                </el-submenu>
+                <el-menu-item index="4" @click="linkRoute('article')">
+                    <i class="el-icon-document"></i>
+                    <span slot="title">文章</span>
+                </el-menu-item>
                 <el-menu-item index="5" @click="linkRoute('link')">
                     <i class="el-icon-link"></i>
                     <span slot="title">链接</span>
@@ -60,6 +56,15 @@ export default {
         return {
             circleUrl: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
             drawerMenu: false,
+        }
+    },
+    computed: {
+        crumbList() {
+            const crumbTrans = { home: '首页', note: '笔记', article: '文章', code: '代码', link: '链接' }
+            let tempList = this.$route.path.split('/').filter(i => i !== '')
+            tempList = tempList.map(i => i = crumbTrans[i]);
+            tempList.unshift('首页')
+            return tempList
         }
     },
     methods: {
