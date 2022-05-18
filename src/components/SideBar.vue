@@ -9,9 +9,9 @@
       <i class="el-icon-date"></i>
       <span slot="title">便签</span>
     </el-menu-item>
-    <el-menu-item index="3" @click="linkRoute('rate')">
+    <el-menu-item index="3" @click="linkRoute('check')">
       <i class="el-icon-star-off"></i>
-      <span slot="title">评分</span>
+      <span slot="title">审核</span>
     </el-menu-item>
     <el-submenu index="4">
       <template slot="title">
@@ -19,7 +19,8 @@
         <span>文章</span>
       </template>
       <el-menu-item-group>
-        <el-menu-item index="4-1" @click="linkRoute('list')"><i class="el-icon-menu"></i>文章列表</el-menu-item>
+        <el-menu-item index="4-1" @click="linkRoute('list')"><i class="el-icon-menu"></i>文章列表
+        </el-menu-item>
         <el-menu-item index="4-2" @click="linkRoute('create')"><i class="el-icon-edit-outline"></i>新建文章
         </el-menu-item>
       </el-menu-item-group>

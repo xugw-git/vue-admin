@@ -1,14 +1,14 @@
 <template>
     <el-header style="display:flex; align-items:center; justify-content:space-between;">
         <div class="hidden-sm-and-down" style="display:flex; align-items:center;">
-            <el-button @click="handleCollapse" icon="el-icon-menu" size="mini">
+            <el-button type="primary" plain @click="handleCollapse" icon="el-icon-menu" size="mini">
             </el-button>
             <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-left: 20px;">
                 <el-breadcrumb-item v-for="(item, index) in crumbList" :key="index">{{ item }}</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="hidden-md-and-up">
-            <el-button @click="drawerMenu = true" icon="el-icon-menu" size="mini">
+            <el-button type="primary" plain @click="drawerMenu = true" icon="el-icon-menu" size="mini">
             </el-button>
             <span style="margin-left: 20px;">首页</span>
         </div>
@@ -23,9 +23,9 @@
                     <i class="el-icon-date"></i>
                     <span slot="title">便签</span>
                 </el-menu-item>
-                <el-menu-item index="3" @click="linkRoute('rate')">
+                <el-menu-item index="3" @click="linkRoute('check')">
                     <i class="el-icon-star-off"></i>
-                    <span slot="title">评分</span>
+                    <span slot="title">审核</span>
                 </el-menu-item>
                 <el-submenu index="4">
                     <template slot="title">
@@ -68,7 +68,7 @@ export default {
     },
     computed: {
         crumbList() {
-            const crumbTrans = { home: '首页', note: '便签', rate: '评分', article: '文章', list: '文章列表', create: '新建文章' }
+            const crumbTrans = { home: '首页', note: '便签', check: '审核', article: '文章', list: '文章列表', create: '新建文章' }
             let tempList = this.$route.path.split('/').filter(i => i !== '')
             tempList = tempList.map(i => i = crumbTrans[i]);
             tempList.unshift('首页')

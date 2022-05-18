@@ -4,7 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import NoteView from '../views/NoteView.vue'
 import ArticleList from '../views/ArticleList.vue'
 import ArticleCreate from '../views/ArticleCreate.vue'
-import RateView from '../views/RateView.vue'
+import CheckView from '../views/CheckView.vue'
 
 Vue.use(VueRouter)
 
@@ -30,9 +30,9 @@ const routes = [
     component: ArticleCreate,
   },
   {
-    path: '/rate',
-    name: 'rate',
-    component: RateView
+    path: '/check',
+    name: 'check',
+    component: CheckView
   },
 ]
 

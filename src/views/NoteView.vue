@@ -10,13 +10,13 @@
       <TagBar></TagBar>
       <el-main style="background-color:#EEEEEE;">
         <el-table :data="tableData" highlight-current-row="true" style="width: 100%" stripe border>
-          <el-table-column type="index" width="100" align="center">
+          <el-table-column type="index" label="序号" width="100" align="center">
           </el-table-column>
-          <el-table-column prop="time" label="时间" width="200" header-align="center" align="center">
+          <el-table-column prop="time" label="时间" width="200" align="center">
           </el-table-column>
-          <el-table-column label="用户" width="100" header-align="center" align="center">xugw
+          <el-table-column label="用户" width="100" align="center">xugw
           </el-table-column>
-          <el-table-column prop="import" label="紧急程度" width="100" header-align="center" align="center">
+          <el-table-column prop="import" label="紧急程度" width="100" align="center">
             <template slot-scope="{row}">
               <el-tag :type="row.import === '一般' ? 'primary' : row.import === '重要' ? 'warning' : 'danger'" size="large">
                 {{ row.import }}
@@ -26,22 +26,21 @@
           <el-table-column prop="content" label="内容" header-align="center">
             <template slot-scope="{row}">
               <template v-if="row.edit">
-                <el-input v-model="row.content" size="small" />
+                <el-input v-model="row.content" size="small" style="padding-right: 80px;" />
+                <el-button plain size="mini" type="success" icon="el-icon-circle-check" @click="confirm(row)"
+                  style="position:absolute; right: 10px; top: 13px">
+                  确认
+                </el-button>
               </template>
               <span v-else>{{ row.content }}</span>
             </template>
           </el-table-column>
-          <el-table-column label="操作" width="200" header-align="center" align="center">
+          <el-table-column label="操作" width="200" align="center">
             <template slot-scope="{row,$index}">
-              <el-button v-if="row.edit" size="mini" type="success" icon="el-icon-circle-check" @click="confirm(row)">
-                确认
+              <el-button plain size="mini" type="primary" icon="el-icon-edit" @click="edit(row)">编辑
               </el-button>
-              <template v-else>
-                <el-button size="mini" type="primary" icon="el-icon-edit" @click="edit(row)">编辑
-                </el-button>
-                <el-button size="mini" type="danger" icon="el-icon-delete" @click="del($index)">
-                  删除</el-button>
-              </template>
+              <el-button plain size="mini" type="danger" icon="el-icon-delete" @click="del($index)">
+                删除</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -55,7 +54,7 @@
 import SideBar from '@/components/SideBar.vue'
 import HeadBar from '@/components/HeadBar.vue'
 import TagBar from '@/components/TagBar.vue'
-import { tableData } from '../mock/index.js'
+import { noteData } from '../mock/index.js'
 
 export default {
   name: 'NoteView',
@@ -65,7 +64,7 @@ export default {
     TagBar
   },
   mounted() {
-    this.tableData = tableData().tableData.sort((first, second) => new Date(second.time) - new Date(first.time));
+    this.tableData = noteData().data.sort((first, second) => new Date(second.time) - new Date(first.time));
   },
   data() {
     return {

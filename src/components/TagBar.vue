@@ -11,7 +11,7 @@
 export default {
     data() {
         return {
-            crumbTrans: { home: '首页', note: '便签', rate: '评分', article: '文章', list: '文章列表', create: '新建文章' },
+            crumbTrans: { home: '首页', note: '便签', check: '审核', article: '文章', list: '文章列表', create: '新建文章' },
         }
     },
     computed: {
