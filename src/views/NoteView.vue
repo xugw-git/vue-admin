@@ -9,7 +9,7 @@
       </el-header>
       <TagBar></TagBar>
       <el-main style="background-color:#EEEEEE;">
-        <el-table :data="tableData" highlight-current-row="true" style="width: 100%" stripe border>
+        <el-table :data="tableData" :highlight-current-row="true" style="width: 100%" stripe border>
           <el-table-column type="index" label="序号" width="100" align="center">
           </el-table-column>
           <el-table-column prop="time" label="时间" width="200" align="center" sortable>

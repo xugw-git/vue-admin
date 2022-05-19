@@ -17,7 +17,7 @@
                         style="margin: 0px; width: 100px;">重置
                     </el-button>
                     <el-button @click="addData" plain type="primary" icon="el-icon-circle-plus-outline"
-                        style="margin: 0px; width: 100px;">添加
+                        style="margin: 0px; width: 100px;">新增
                     </el-button>
                 </template>
                 <el-table :data="tableData" ref="checkTable" :highlight-current-row="true" style="width: 100%" stripe
@@ -50,7 +50,7 @@
                     style="margin-top: 20px; margin-bottom: 20px; justify-content:center; display: flex;">
                 </el-pagination>
 
-                <el-dialog :title="isCreate === true ? '添加数据' : '编辑数据'" :visible.sync="dialogEdit">
+                <el-dialog :title="isCreate === true ? '新增数据' : '更新数据'" :visible.sync="dialogEdit">
                     <el-form label-position="top" :model="addForm" :rules="rules" ref="dialogForm" status-icon>
                         <el-form-item label="时间" prop="time">
                             <el-date-picker v-model="addForm.time" type="datetime" placeholder="选择日期时间"

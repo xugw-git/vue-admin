@@ -5,6 +5,7 @@ import NoteView from '../views/NoteView.vue'
 import ArticleList from '../views/ArticleList.vue'
 import ArticleCreate from '../views/ArticleCreate.vue'
 import CheckView from '../views/CheckView.vue'
+import LoginView from '../views/LoginView.vue'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/check',
     name: 'check',
     component: CheckView
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView
   },
 ]
 
