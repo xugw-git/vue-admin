@@ -12,11 +12,11 @@
         <el-table :data="tableData" highlight-current-row="true" style="width: 100%" stripe border>
           <el-table-column type="index" label="序号" width="100" align="center">
           </el-table-column>
-          <el-table-column prop="time" label="时间" width="200" align="center">
+          <el-table-column prop="time" label="时间" width="200" align="center" sortable>
           </el-table-column>
-          <el-table-column label="用户" width="100" align="center">xugw
+          <el-table-column label="用户" width="100" align="center">admin
           </el-table-column>
-          <el-table-column prop="import" label="紧急程度" width="100" align="center">
+          <el-table-column prop="import" label="紧急程度" width="200" align="center" sortable>
             <template slot-scope="{row}">
               <el-tag :type="row.import === '一般' ? 'primary' : row.import === '重要' ? 'warning' : 'danger'" size="large">
                 {{ row.import }}
@@ -64,7 +64,7 @@ export default {
     TagBar
   },
   mounted() {
-    this.tableData = noteData().data.sort((first, second) => new Date(second.time) - new Date(first.time));
+    this.tableData = noteData().data.sort((a, b) => new Date(a.time) - new Date(b.time));
   },
   data() {
     return {
