@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../store'
 import HomeView from '../views/HomeView.vue'
 import NoteView from '../views/NoteView.vue'
 import ArticleList from '../views/ArticleList.vue'
@@ -44,6 +45,18 @@ const routes = [
 
 const router = new VueRouter({
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  store.commit('GetToken')
+  let token = store.state.UserToken.token
+  if (!token && to.name !== 'login') {
+    next({ name: 'login' })
+  } else if (token && to.name === 'login') {
+    next({ name: 'home' })
+  } else {
+    next()
+  }
 })
 
 export default router

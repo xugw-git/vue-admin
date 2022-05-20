@@ -51,7 +51,7 @@
                 </el-pagination>
 
                 <el-dialog :title="isCreate === true ? '新增数据' : '更新数据'" :visible.sync="dialogEdit">
-                    <el-form label-position="top" :model="addForm" :rules="rules" ref="dialogForm" status-icon>
+                    <el-form label-position="top" :model="addForm" :rules="rules" ref="dialogForm">
                         <el-form-item label="时间" prop="time">
                             <el-date-picker v-model="addForm.time" type="datetime" placeholder="选择日期时间"
                                 style="width: 50%">
