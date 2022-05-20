@@ -11,98 +11,67 @@
       <el-main style="background-color:#EEEEEE;">
         <el-row :gutter="20">
           <el-col :lg="8">
-            <el-card class="box-card" body-style="padding: 15px">
-              <div slot="header" style="display:flex; align-items:center; justify-content:space-around;">
-                <el-avatar shape="square" :size="60" :src="squareUrl"></el-avatar>
-                <span>admin</span>
-              </div>
-              <div class="text item" style="display:flex; align-items:center; justify-content:space-around;">
-                <span style="font-size: small; color: darkgrey;">上次登录时间:</span><span
-                  style="font-size: small;">2022-05-13
-                  12:00</span>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :xs="12" :sm="12" :md="6" :lg="4">
-            <el-card class="box-card">
-              <div class="text item" style="display:flex; align-items:center; justify-content:space-around;">
-                <span style="color: darkgrey;"><i class="el-icon-video-play"></i> 播放</span><span>999</span>
-              </div>
-            </el-card>
-            <el-card class="box-card">
-              <div class="text item" style="display:flex; align-items:center; justify-content:space-around;">
-                <span style="color: darkgrey;"><i class="el-icon-document"></i> 阅读</span><span>999</span>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :xs="12" :sm="12" :md="6" :lg="4">
-            <el-card class="box-card">
-              <div class="text item" style="display:flex; align-items:center; justify-content:space-around;">
-                <span style="color: darkgrey;"><i class="el-icon-user"></i> 粉丝</span><span>999</span>
-              </div>
-            </el-card>
-            <el-card class="box-card">
-              <div class="text item" style="display:flex; align-items:center; justify-content:space-around;">
-                <span style="color: darkgrey;"><i class="el-icon-chat-line-square"></i> 弹幕</span><span>999</span>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :xs="12" :sm="12" :md="6" :lg="4">
-            <el-card class="box-card">
-              <div class="text item" style="display:flex; align-items:center; justify-content:space-around;">
-                <span style="color: darkgrey;"><i class="el-icon-thumb"></i> 点赞</span><span>999</span>
-              </div>
-            </el-card>
-            <el-card class="box-card">
-              <div class="text item" style="display:flex; align-items:center; justify-content:space-around;">
-                <span style="color: darkgrey;"><i class="el-icon-circle-check"></i> 投币</span><span>999</span>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :xs="12" :sm="12" :md="6" :lg="4">
-            <el-card class="box-card">
-              <div class="text item" style="display:flex; align-items:center; justify-content:space-around;">
-                <span style="color: darkgrey;"><i class="el-icon-chat-round"></i> 评论</span><span>999</span>
-              </div>
-            </el-card>
-            <el-card class="box-card">
-              <div class="text item" style="display:flex; align-items:center; justify-content:space-around;">
-                <span style="color: darkgrey;"><i class="el-icon-share"></i> 分享</span><span>999</span>
-              </div>
-            </el-card>
-          </el-col>
-        </el-row>
+            <el-tabs type="border-card" class="box-card">
+              <el-tab-pane label="项目概况">
+                <el-divider content-position="left"><i class="el-icon-link"></i> 链接</el-divider>
+                <div style="text-align: center;">
+                  <el-avatar shape="square" :size="80" :src="squareUrl"></el-avatar>
+                  <div style="margin: 10px 0">
+                    <el-link href="https://github.com/xugw-git/vue-admin" target="_blank" icon="el-icon-position">
+                      项目仓库
+                    </el-link>
+                  </div>
+                </div>
+                <el-divider content-position="left"><i class="el-icon-setting"></i> 依赖</el-divider>
+                <div style="margin: 50px;">
+                  <el-tag style="margin: 5px 5px 0 0;">vue</el-tag>
+                  <el-tag style="margin: 5px 5px 0 0;">element-ui</el-tag>
+                  <el-tag style="margin: 5px 5px 0 0;">vue-router</el-tag>
+                  <el-tag style="margin: 5px 5px 0 0;">vuex</el-tag>
+                  <el-tag style="margin: 5px 5px 0 0;">echarts</el-tag>
+                  <el-tag style="margin: 5px 5px 0 0;">js-cookie</el-tag>
+                  <el-tag style="margin: 5px 5px 0 0;">mockjs</el-tag>
+                </div>
+                <el-divider content-position="left"><i class="el-icon-document"></i> 语言</el-divider>
+                <div style="padding: 10px 50px 20px 50px">
+                  <el-tag type="success">Vue</el-tag>
+                  <el-progress :percentage="89.5" color="#67C23A"></el-progress>
+                  <el-tag type="warning">JavaScript</el-tag>
+                  <el-progress :percentage="9.6" color="#E6A23C"></el-progress>
+                  <el-tag type="danger">HTML</el-tag>
+                  <el-progress :percentage="0.9" color="#F56C6C"></el-progress>
+                </div>
 
-        <el-row :gutter="20">
-          <el-col :lg="8">
-            <el-card class="box-card">
-              <el-timeline>
-                <el-timeline-item timestamp="2022/5/20" placement="top" color="#0bbd87">
-                  <el-card>
-                    <p>更新 Github 模板</p>
-                    <p>XUGW 提交于 2022/5/20 20:46</p>
-                  </el-card>
-                </el-timeline-item>
-                <el-timeline-item timestamp="2022/5/15" placement="top" color="#0bbd87">
-                  <el-card>
-                    <p>更新 Github 模板</p>
-                    <p>XUGW 提交于 2022/5/15 20:46</p>
-                  </el-card>
-                </el-timeline-item>
-                <el-timeline-item timestamp="2022/5/8" placement="top" color="#0bbd87">
-                  <el-card>
-                    <p>更新 Github 模板</p>
-                    <p>XUGW 提交于 2022/5/8 20:46</p>
-                  </el-card>
-                </el-timeline-item>
-                <el-timeline-item timestamp="2022/5/5" placement="top" color="#0bbd87">
-                  <el-card>
-                    <p>更新 Github 模板</p>
-                    <p>XUGW 提交于 2022/5/5 20:46</p>
-                  </el-card>
-                </el-timeline-item>
-              </el-timeline>
-            </el-card>
+              </el-tab-pane>
+              <el-tab-pane label="时间线">
+                <el-timeline>
+                  <el-timeline-item timestamp="2022/5/20" placement="top" color="#0bbd87">
+                    <el-card>
+                      <p>更新 Github 模板</p>
+                      <p>XUGW 提交于 2022/5/20 20:46</p>
+                    </el-card>
+                  </el-timeline-item>
+                  <el-timeline-item timestamp="2022/5/15" placement="top" color="#0bbd87">
+                    <el-card>
+                      <p>更新 Github 模板</p>
+                      <p>XUGW 提交于 2022/5/15 20:46</p>
+                    </el-card>
+                  </el-timeline-item>
+                  <el-timeline-item timestamp="2022/5/8" placement="top" color="#0bbd87">
+                    <el-card>
+                      <p>更新 Github 模板</p>
+                      <p>XUGW 提交于 2022/5/8 20:46</p>
+                    </el-card>
+                  </el-timeline-item>
+                  <el-timeline-item timestamp="2022/5/5" placement="top" color="#0bbd87">
+                    <el-card>
+                      <p>更新 Github 模板</p>
+                      <p>XUGW 提交于 2022/5/5 20:46</p>
+                    </el-card>
+                  </el-timeline-item>
+                </el-timeline>
+              </el-tab-pane>
+            </el-tabs>
           </el-col>
           <el-col :lg="16">
             <el-card class="box-card">
@@ -122,7 +91,6 @@
             </el-row>
           </el-col>
         </el-row>
-
       </el-main>
     </el-container>
   </el-container>
@@ -149,7 +117,7 @@ export default {
           trigger: 'axis'
         },
         legend: {
-          data: ['播放', '阅读', '粉丝', '弹幕']
+          data: ['HTML', 'CSS', 'JavaScript']
         },
         xAxis: {
           type: 'category',
@@ -160,25 +128,19 @@ export default {
         },
         series: [
           {
-            name: '播放',
+            name: 'HTML',
             data: [150, 230, 224, 218, 135, 147, 260],
             type: 'line',
             smooth: true
           },
           {
-            name: '阅读',
+            name: 'CSS',
             data: [220, 182, 191, 234, 290, 330, 310],
             type: 'line',
             smooth: true
           },
           {
-            name: '粉丝',
-            data: [150, 232, 201, 154, 190, 330, 410],
-            type: 'line',
-            smooth: true
-          },
-          {
-            name: '弹幕',
+            name: 'JavaScript',
             data: [520, 432, 601, 334, 590, 430, 620],
             type: 'line',
             smooth: true
@@ -215,11 +177,11 @@ export default {
               show: false
             },
             data: [
-              { value: 1048, name: 'Vue' },
-              { value: 735, name: 'JavaScript' },
-              { value: 580, name: 'elementUI' },
               { value: 484, name: 'HTML' },
-              { value: 300, name: 'CSS' }
+              { value: 300, name: 'CSS' },
+              { value: 735, name: 'JavaScript' },
+              { value: 1048, name: 'Vue' },
+              { value: 580, name: 'elementUI' },
             ]
           }
         ]

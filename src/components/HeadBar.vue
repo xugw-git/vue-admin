@@ -39,10 +39,6 @@
                         </el-menu-item>
                     </el-menu-item-group>
                 </el-submenu>
-                <el-menu-item index="5">
-                    <i class="el-icon-lock"></i>
-                    <span slot="title">权限</span>
-                </el-menu-item>
             </el-menu>
         </el-drawer>
         <el-dropdown trigger="click" style="padding: 20px">
@@ -50,8 +46,11 @@
                 <el-avatar :size="40" :src="circleUrl"></el-avatar>
             </span>
             <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>主页</el-dropdown-item>
-                <el-dropdown-item @click.native="logOut">退出</el-dropdown-item>
+                <el-dropdown-item @click.native="linkRoute('home')">首页</el-dropdown-item>
+                <a target="_blank" href="https://github.com/xugw-git" style="text-decoration:none;">
+                    <el-dropdown-item>github</el-dropdown-item>
+                </a>
+                <el-dropdown-item @click.native="logOut" divided>退出</el-dropdown-item>
             </el-dropdown-menu>
         </el-dropdown>
     </el-header>
@@ -85,7 +84,7 @@ export default {
         logOut() {
             this.$store.commit('RemoveToken')
             this.$router.push({ name: 'login' })
-        }
+        },
     }
 }
 </script>

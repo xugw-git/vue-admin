@@ -58,7 +58,7 @@
                             </el-date-picker>
                         </el-form-item>
                         <el-form-item label="评分" prop="rate">
-                            <el-select v-model="addForm.rate" placeholder="请选择评分" clearable style="width: 50%">
+                            <el-select v-model="addForm.rate" placeholder="选择评分" clearable style="width: 50%">
                                 <el-option v-for="item in rateOption" :key="item" :label="item" :value="item" />
                             </el-select>
                         </el-form-item>
@@ -116,7 +116,7 @@ export default {
                 ],
                 content: [
                     { required: true, message: '请输入评价', trigger: 'blur' },
-                    { min: 5, message: '请输入不少于 5 个字符', trigger: 'blur' }
+                    { min: 5, message: '评价不少于 5 个字符', trigger: 'blur' }
                 ],
             }
         }

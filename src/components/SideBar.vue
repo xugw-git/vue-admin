@@ -25,10 +25,6 @@
         </el-menu-item>
       </el-menu-item-group>
     </el-submenu>
-    <el-menu-item index="5">
-      <i class="el-icon-lock"></i>
-      <span slot="title">权限</span>
-    </el-menu-item>
   </el-menu>
 </template>
 
