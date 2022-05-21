@@ -16,7 +16,7 @@
           </el-table-column>
           <el-table-column label="用户" width="100" align="center">admin
           </el-table-column>
-          <el-table-column prop="import" label="紧急程度" width="200" align="center" sortable>
+          <el-table-column prop="import" label="紧急程度" width="150" align="center" sortable>
             <template slot-scope="{row}">
               <el-tag :type="row.import === '一般' ? 'primary' : row.import === '重要' ? 'warning' : 'danger'" size="large">
                 {{ row.import }}
@@ -54,7 +54,7 @@
 import SideBar from '@/components/SideBar.vue'
 import HeadBar from '@/components/HeadBar.vue'
 import TagBar from '@/components/TagBar.vue'
-import { noteData } from '../mock/index.js'
+import axios from "axios"
 
 export default {
   name: 'NoteView',
@@ -64,7 +64,12 @@ export default {
     TagBar
   },
   mounted() {
-    this.tableData = noteData().data.sort((a, b) => new Date(a.time) - new Date(b.time));
+    axios
+      .get("/notedata")
+      .then(res => {
+        this.tableData = res.data.data.sort((a, b) => new Date(a.time) - new Date(b.time));
+      });
+
   },
   data() {
     return {

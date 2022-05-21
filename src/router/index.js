@@ -4,6 +4,7 @@ import store from '../store'
 import HomeView from '../views/HomeView.vue'
 import NoteView from '../views/NoteView.vue'
 import ArticleList from '../views/ArticleList.vue'
+import ArticleEdit from '../views/ArticleEdit.vue'
 import ArticleCreate from '../views/ArticleCreate.vue'
 import CheckView from '../views/CheckView.vue'
 import LoginView from '../views/LoginView.vue'
@@ -25,6 +26,11 @@ const routes = [
     path: '/article/list',
     name: 'list',
     component: ArticleList,
+  },
+  {
+    path: '/article/edit/:id',
+    name: 'edit',
+    component: ArticleEdit,
   },
   {
     path: '/article/create',
@@ -58,5 +64,11 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
+
+
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 
 export default router

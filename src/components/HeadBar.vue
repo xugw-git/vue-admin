@@ -67,8 +67,8 @@ export default {
     },
     computed: {
         crumbList() {
-            const crumbTrans = { home: '首页', note: '便签', check: '审核', article: '文章', list: '文章列表', create: '新建文章' }
-            let tempList = this.$route.path.split('/').filter(i => i !== '')
+            const crumbTrans = { home: '首页', note: '便签', check: '审核', article: '文章', list: '列表', create: '新建', edit: '编辑' }
+            let tempList = this.$route.path.split('/').filter(i => i !== '' && isNaN(i))
             tempList = tempList.map(i => i = crumbTrans[i]);
             tempList.unshift('首页')
             return tempList

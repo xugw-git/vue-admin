@@ -2,7 +2,8 @@
     <div class="tag-group" style="background-color:#EEEEEE; padding-left: 20px;">
         <el-tag @close="closeTag(tag)" @click="selectTag(tag)" v-for="(tag, index) in tags" :key="index"
             :effect="tag === currentTag ? 'dark' : 'plain'" closable>
-            {{ crumbTrans[tag] }}
+            {{ tag.split('_').length === 1 ? crumbTrans[tag] : crumbTrans[tag.split('_')[0]] + '-' + tag.split('_')[1]
+            }}
         </el-tag>
     </div>
 </template>
@@ -11,7 +12,7 @@
 export default {
     data() {
         return {
-            crumbTrans: { home: '首页', note: '便签', check: '审核', article: '文章', list: '文章列表', create: '新建文章' },
+            crumbTrans: { home: '首页', note: '便签', check: '审核', list: '文章列表', create: '新建文章', edit: '编辑文章' },
         }
     },
     computed: {
@@ -30,15 +31,24 @@ export default {
             this.$store.commit("CloseTag", tag)
         },
         selectTag(tag) {
-            this.$router.push({ name: tag })
+            if (tag.split('_').length === 1) {
+                this.$router.push({ name: tag })
+            } else {
+                this.$router.push({ name: tag.split('_')[0], params: { id: tag.split('_')[1] } })
+            }
             this.$store.commit("SelectTag", tag)
         }
     },
     watch: {
-        '$route.name': {
-            handler(name) {
-                this.$store.commit("AddTag", name)
-                this.$store.commit("SelectTag", name)
+        '$route': {
+            handler(route) {
+                if (Object.keys(route.params).length === 0) {
+                    this.$store.commit("AddTag", route.name)
+                    this.$store.commit("SelectTag", route.name)
+                } else {
+                    this.$store.commit("AddTag", route.name + '_' + route.params.id)
+                    this.$store.commit("SelectTag", route.name + '_' + route.params.id)
+                }
             },
             deep: true,
             immediate: true,

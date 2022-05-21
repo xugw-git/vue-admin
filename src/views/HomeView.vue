@@ -30,6 +30,7 @@
                   <el-tag style="margin: 5px 5px 0 0;">vuex</el-tag>
                   <el-tag style="margin: 5px 5px 0 0;">echarts</el-tag>
                   <el-tag style="margin: 5px 5px 0 0;">js-cookie</el-tag>
+                  <el-tag style="margin: 5px 5px 0 0;">axios</el-tag>
                   <el-tag style="margin: 5px 5px 0 0;">mockjs</el-tag>
                 </div>
                 <el-divider content-position="left"><i class="el-icon-document"></i> 语言</el-divider>

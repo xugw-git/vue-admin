@@ -24,11 +24,11 @@
                     border @sort-change="sortChange">
                     <el-table-column prop="id" label="ID" width="100" align="center" sortable="custom">
                     </el-table-column>
-                    <el-table-column prop="time" label="时间" width="200" align="center" sortable>
+                    <el-table-column prop="time" label="时间" width="200" align="center" sortable="custom">
                     </el-table-column>
                     <el-table-column prop="author" label="作者" width="100" align="center">
                     </el-table-column>
-                    <el-table-column prop="rate" label="评分" width="200" align="center" sortable>
+                    <el-table-column prop="rate" label="评分" width="200" align="center" sortable="custom">
                         <template slot-scope="{row}">
                             <el-rate v-model="row.rate" disabled></el-rate>
                         </template>
@@ -83,7 +83,7 @@
 import SideBar from '@/components/SideBar.vue'
 import HeadBar from '@/components/HeadBar.vue'
 import TagBar from '@/components/TagBar.vue'
-import { checkData } from '../mock/index.js'
+import axios from "axios"
 
 export default {
     name: 'CheckView',
@@ -122,9 +122,13 @@ export default {
         }
     },
     mounted() {
-        this.InitData = checkData().data
-        this.TempData = this.InitData.slice()
-        this.handleCurrentChange(this.currentPage)
+        axios
+            .get("/checkdata")
+            .then(res => {
+                this.InitData = res.data.data
+                this.TempData = this.InitData.slice()
+                this.handleCurrentChange(this.currentPage)
+            });
     },
     watch: {
         rateSelect() {
