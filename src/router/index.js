@@ -8,6 +8,7 @@ import ArticleEdit from '../views/ArticleEdit.vue'
 import ArticleCreate from '../views/ArticleCreate.vue'
 import CheckView from '../views/CheckView.vue'
 import LoginView from '../views/LoginView.vue'
+import Page404 from '../views/Page404.vue'
 
 Vue.use(VueRouter)
 
@@ -46,6 +47,14 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginView
+  },
+  {
+    path: '/404',
+    component: Page404
+  },
+  {
+    path: '*',
+    redirect: '/404'
   },
 ]
 

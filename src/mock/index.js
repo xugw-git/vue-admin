@@ -1,11 +1,17 @@
 import Mock from 'mockjs'
 
 const noteData = Mock.mock({
-    "data|10": [{
-        'edit': false,
-        'time': '@datetime',
+    "data1|6": [{
         'import|1': ['一般', '重要', '紧急'],
-        'content': '@title(3, 6)'
+        'note': '@title(1, 3)'
+    }],
+    "data2|6": [{
+        'import|1': ['一般', '重要', '紧急'],
+        'note': '@title(1, 3)'
+    }],
+    "data3|6": [{
+        'import|1': ['一般', '重要', '紧急'],
+        'note': '@title(1, 3)'
     }]
 })
 

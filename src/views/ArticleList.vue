@@ -35,7 +35,7 @@
                             </el-tag>
                         </template>
                     </el-table-column>
-                    <el-table-column prop="title" label="标题" header-align="center">
+                    <el-table-column prop="title" label="标题" min-width="600" header-align="center">
                     </el-table-column>
                     <el-table-column label="操作" width="150" align="center">
                         <template slot-scope="{row}">
