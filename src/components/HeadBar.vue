@@ -12,6 +12,7 @@
             </el-button>
             <span style="margin-left: 20px;">首页</span>
         </div>
+
         <el-drawer title="我是标题" :visible.sync="drawerMenu" :with-header="false" direction="ltr" size=200px>
             <el-menu background-color="#545c64" text-color="#fff" active-text-color="#ffd04b"
                 style="height: 100%; border: none;">
@@ -24,23 +25,22 @@
                     <span slot="title">便签</span>
                 </el-menu-item>
                 <el-menu-item index="3" @click="linkRoute('check')">
-                    <i class="el-icon-star-off"></i>
+                    <i class="el-icon-s-check"></i>
                     <span slot="title">审核</span>
                 </el-menu-item>
                 <el-submenu index="4">
                     <template slot="title">
-                        <i class="el-icon-notebook-1"></i>
-                        <span>文章</span>
+                        <i class="el-icon-s-tools"></i>
+                        <span>工具</span>
                     </template>
                     <el-menu-item-group>
-                        <el-menu-item index="4-1" @click="linkRoute('list')"><i class="el-icon-menu"></i>文章列表
-                        </el-menu-item>
-                        <el-menu-item index="4-2" @click="linkRoute('create')"><i class="el-icon-edit-outline"></i>新建文章
+                        <el-menu-item index="4-1" @click="linkRoute('excel')"><i class="el-icon-printer"></i>导出 Excel
                         </el-menu-item>
                     </el-menu-item-group>
                 </el-submenu>
             </el-menu>
         </el-drawer>
+
         <el-dropdown trigger="click" style="padding: 20px">
             <span class="el-dropdown-link">
                 <el-avatar :size="40" :src="circleUrl"></el-avatar>
@@ -67,7 +67,7 @@ export default {
     },
     computed: {
         crumbList() {
-            const crumbTrans = { home: '首页', note: '便签', check: '审核', article: '文章', list: '列表', create: '新建', edit: '编辑' }
+            const crumbTrans = { home: '首页', note: '便签', check: '审核', tool: '工具', excel: '导出 Excel' }
             let tempList = this.$route.path.split('/').filter(i => i !== '' && isNaN(i))
             tempList = tempList.map(i => i = crumbTrans[i]);
             tempList.unshift('首页')

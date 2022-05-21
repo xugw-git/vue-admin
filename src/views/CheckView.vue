@@ -10,30 +10,40 @@
             <TagBar></TagBar>
             <el-main style="background-color:#EEEEEE;">
                 <template>
-                    <el-select v-model="rateSelect" placeholder="评分" clearable style="width: 100px;">
-                        <el-option v-for="item in rateOption" :key="item" :label="item" :value="item" />
+                    <el-select v-model="statusSelect" placeholder="状态" clearable style="width: 80px;">
+                        <el-option v-for="item in statusOption" :key="item" :label="item" :value="item" />
                     </el-select>
-                    <el-button @click="refreshData" plain type="primary" icon="el-icon-refresh"
-                        style="margin: 0px; width: 100px;">重置
+                    <el-select v-model="nameSelect" placeholder="作者" clearable style="width: 80px;">
+                        <el-option v-for="item in nameOption" :key="item" :label="item" :value="item" />
+                    </el-select>
+                    <el-button @click="refreshData" plain type="primary" style="margin: 0px; width: 80px;">重置 <i
+                            class="el-icon-refresh"></i>
                     </el-button>
-                    <el-button @click="addData" plain type="primary" icon="el-icon-circle-plus-outline"
-                        style="margin: 0px; width: 100px;">新增
+                    <el-button @click="addData" plain type="primary" style="margin: 0px; width: 80px;">新增 <i
+                            class="el-icon-circle-plus-outline"></i>
                     </el-button>
                 </template>
                 <el-table :data="tableData" ref="checkTable" :highlight-current-row="true" style="width: 100%" stripe
                     border @sort-change="sortChange">
-                    <el-table-column prop="id" label="ID" width="100" align="center" sortable="custom">
+                    <el-table-column prop="id" label="序号" width="80" align="center" sortable="custom">
+                    </el-table-column>
+                    <el-table-column prop="title" label="标题" min-width="440" header-align="center">
                     </el-table-column>
                     <el-table-column prop="time" label="时间" width="200" align="center" sortable="custom">
                     </el-table-column>
-                    <el-table-column prop="author" label="作者" width="100" align="center">
+                    <el-table-column prop="name" label="作者" width="100" align="center">
                     </el-table-column>
-                    <el-table-column prop="rate" label="评分" width="200" align="center" sortable="custom">
+                    <el-table-column prop="rate" label="评分" width="160" align="center" sortable="custom">
                         <template slot-scope="{row}">
                             <el-rate v-model="row.rate" disabled></el-rate>
                         </template>
                     </el-table-column>
-                    <el-table-column prop="content" label="评价" min-width="500" header-align="center">
+                    <el-table-column prop="status" label="状态" width="120" align="center" sortable="custom">
+                        <template slot-scope="{row}">
+                            <el-tag :type="row.status === '草稿' ? 'info' : 'success'" size="large">
+                                {{ row.status }}
+                            </el-tag>
+                        </template>
                     </el-table-column>
                     <el-table-column label="操作" width="200" align="center">
                         <template slot-scope="{row}">
@@ -50,20 +60,25 @@
                     style="margin-top: 20px; margin-bottom: 20px; justify-content:center; display: flex;">
                 </el-pagination>
 
-                <el-dialog :title="isCreate === true ? '新增数据' : '更新数据'" :visible.sync="dialogEdit">
-                    <el-form label-position="top" :model="addForm" :rules="rules" ref="dialogForm">
+                <el-dialog :title="isCreate === true ? '新增' : '更新'" :visible.sync="dialogEdit">
+                    <el-form :model="addForm" :rules="rules" ref="dialogForm">
                         <el-form-item label="时间" prop="time">
                             <el-date-picker v-model="addForm.time" type="datetime" placeholder="选择日期时间"
-                                style="width: 50%">
+                                style="width: 200px">
                             </el-date-picker>
                         </el-form-item>
                         <el-form-item label="评分" prop="rate">
-                            <el-select v-model="addForm.rate" placeholder="选择评分" clearable style="width: 50%">
+                            <el-select v-model="addForm.rate" placeholder="选择评分" clearable style="width: 200px">
                                 <el-option v-for="item in rateOption" :key="item" :label="item" :value="item" />
                             </el-select>
                         </el-form-item>
-                        <el-form-item label="评价" prop="content">
-                            <el-input v-model="addForm.content" clearable style="width: 100%"></el-input>
+                        <el-form-item label="状态" prop="status">
+                            <el-select v-model="addForm.status" placeholder="选择状态" clearable style="width: 200px">
+                                <el-option v-for="item in statusOption" :key="item" :label="item" :value="item" />
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="标题" prop="title">
+                            <el-input v-model="addForm.title" clearable style="width: 400px"></el-input>
                         </el-form-item>
                     </el-form>
                     <div slot="footer">
@@ -98,14 +113,18 @@ export default {
             TempData: [],
             tableData: [],
             rateOption: [1, 2, 3, 4, 5],
-            rateSelect: '',
+            nameOption: new Set(),
+            nameSelect: '',
+            statusOption: ['草稿', '已发布'],
+            statusSelect: '',
             isCreate: false,
             dialogEdit: false,
             currentPage: 1,
             addForm: {
                 time: new Date(),
+                title: '',
                 rate: 5,
-                content: ''
+                status: '草稿'
             },
             rules: {
                 time: [
@@ -114,9 +133,12 @@ export default {
                 rate: [
                     { required: true, message: '请完成评分', trigger: 'change' }
                 ],
-                content: [
+                title: [
                     { required: true, message: '请输入评价', trigger: 'blur' },
                     { min: 5, message: '评价不少于 5 个字符', trigger: 'blur' }
+                ],
+                status: [
+                    { required: true, message: '请选择状态', trigger: 'change' }
                 ],
             }
         }
@@ -128,40 +150,51 @@ export default {
                 this.InitData = res.data.data
                 this.TempData = this.InitData.slice()
                 this.handleCurrentChange(this.currentPage)
+                let nameList = []
+                nameList.push(this.InitData.map(i => i.name))
+                this.nameOption = new Set(nameList[0])
             });
     },
     watch: {
-        rateSelect() {
+        nameSelect() {
+            this.filterData()
+        },
+        statusSelect() {
             this.filterData()
         }
     },
     methods: {
         filterData() {
-            if (this.rateSelect === '') {
+            if (this.nameSelect === '' && this.statusSelect === '') {
                 this.TempData = this.InitData.slice()
                 this.handleCurrentChange(this.currentPage)
+            } else if (this.nameSelect === '' && this.statusSelect !== '') {
+                this.TempData = this.InitData.filter(i => i.status === this.statusSelect)
+                this.handleCurrentChange(this.currentPage)
+            } else if (this.nameSelect !== '' && this.statusSelect === '') {
+                this.TempData = this.InitData.filter(i => i.name === this.nameSelect)
+                this.handleCurrentChange(this.currentPage)
             } else {
-                this.TempData = this.InitData.filter(i => i.rate === this.rateSelect)
+                this.TempData = this.InitData.filter(i => i.status === this.statusSelect && i.name === this.nameSelect)
                 this.handleCurrentChange(this.currentPage)
             }
         },
         refreshData() {
-            this.$refs['checkTable'].clearSort();
-            this.rateSelect = ''
+            this.$refs['checkTable'].clearSort()
+            this.nameSelect = ''
+            this.statusSelect = ''
             this.filterData()
         },
         handleCurrentChange(val) {
             this.tableData = this.TempData.slice((val - 1) * 10, val * 10)
         },
-        resetForm() {
+        addData() {
             this.addForm = {
                 time: new Date(),
                 rate: 5,
-                content: ''
+                title: '',
+                status: '草稿'
             }
-        },
-        addData() {
-            this.resetForm()
             this.isCreate = true
             this.dialogEdit = true
             this.$nextTick(() => {
@@ -194,7 +227,8 @@ export default {
         confirmAdd() {
             this.$refs['dialogForm'].validate((valid) => {
                 if (valid) {
-                    this.InitData.push({ author: 'admin', content: this.addForm.content, id: Math.max.apply(Math, this.InitData.map(item => { return item.id })) + 1, rate: this.addForm.rate, time: this.addForm.time.toLocaleString('zh-CN', { year: "numeric", month: "2-digit", day: "2-digit", hour: "numeric", minute: "numeric", second: "numeric" }).replaceAll('/', '-') })
+                    this.InitData.push({ name: 'admin', title: this.addForm.title, id: Math.max.apply(Math, this.InitData.map(item => { return item.id })) + 1, rate: this.addForm.rate, time: this.addForm.time.toLocaleString('zh-CN', { year: "numeric", month: "2-digit", day: "2-digit", hour: "numeric", minute: "numeric", second: "numeric" }).replaceAll('/', '-'), status: this.addForm.status })
+                    this.nameOption.add('admin')
                     this.$refs['checkTable'].clearSort();
                     this.currentPage = 1
                     this.filterData()

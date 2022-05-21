@@ -3,10 +3,8 @@ import VueRouter from 'vue-router'
 import store from '../store'
 import HomeView from '../views/HomeView.vue'
 import NoteView from '../views/NoteView.vue'
-import ArticleList from '../views/ArticleList.vue'
-import ArticleEdit from '../views/ArticleEdit.vue'
-import ArticleCreate from '../views/ArticleCreate.vue'
 import CheckView from '../views/CheckView.vue'
+import ExportExcel from '../views/ExportExcel.vue'
 import LoginView from '../views/LoginView.vue'
 import Page404 from '../views/Page404.vue'
 
@@ -24,24 +22,14 @@ const routes = [
     component: NoteView
   },
   {
-    path: '/article/list',
-    name: 'list',
-    component: ArticleList,
-  },
-  {
-    path: '/article/edit/:id',
-    name: 'edit',
-    component: ArticleEdit,
-  },
-  {
-    path: '/article/create',
-    name: 'create',
-    component: ArticleCreate,
-  },
-  {
     path: '/check',
     name: 'check',
     component: CheckView
+  },
+  {
+    path: '/tool/excel',
+    name: 'excel',
+    component: ExportExcel
   },
   {
     path: '/login',

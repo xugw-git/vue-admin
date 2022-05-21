@@ -13,7 +13,7 @@
           <el-col :lg="8">
             <el-card style="margin-bottom: 20px">
               <div slot="header" style="text-align: center">
-                <span>待完成项 <i class="el-icon-date"></i></span>
+                <span style="font-size: 18px; color: #409EFF;">待完成项 <i class="el-icon-date"></i></span>
               </div>
               <draggable v-model="list1" v-bind="{
                 animation: 200,
@@ -21,10 +21,10 @@
                 disabled: false,
                 ghostClass: 'ghost'
               }">
-                <el-card v-for="(i, index) in list1" :key="index" style="width: 100%; margin: 10px 0;" shadow="hover">
+                <el-card v-for="(i, index) in list1" :key="index" style="margin: 5px 0;" shadow="hover">
                   <el-tag :type="i.import === '一般' ? 'primary' : i.import === '重要' ? 'warning' : 'danger'"
                     style="margin:0 20px 0 0;">{{ i.import }}</el-tag>
-                  {{ i.note }}
+                  <span style="font-size: 14px; color: #409EFF;">{{ i.note }}</span>
                 </el-card>
               </draggable>
             </el-card>
@@ -32,7 +32,7 @@
           <el-col :lg="8">
             <el-card style="margin-bottom: 20px">
               <div slot="header" style="text-align: center">
-                <span>正在处理 <i class="el-icon-alarm-clock"></i></span>
+                <span style="font-size: 18px; color: #F56C6C">正在处理 <i class="el-icon-alarm-clock"></i></span>
               </div>
               <draggable v-model="list2" v-bind="{
                 animation: 200,
@@ -40,10 +40,10 @@
                 disabled: false,
                 ghostClass: 'ghost'
               }">
-                <el-card v-for="(i, index) in list2" :key="index" style="width: 100%; margin: 10px 0;" shadow="hover">
+                <el-card v-for="(i, index) in list2" :key="index" style="margin: 5px 0;" shadow="hover">
                   <el-tag :type="i.import === '一般' ? 'primary' : i.import === '重要' ? 'warning' : 'danger'"
                     style="margin:0 20px 0 0;">{{ i.import }}</el-tag>
-                  {{ i.note }}
+                  <span style="font-size: 14px; color: #F56C6C">{{ i.note }}</span>
                 </el-card>
               </draggable>
             </el-card>
@@ -51,7 +51,7 @@
           <el-col :lg="8">
             <el-card style="margin-bottom: 20px">
               <div slot="header" style="text-align: center">
-                <span>已完成项 <i class="el-icon-circle-check"></i></span>
+                <span style="font-size: 18px; color: #67C23A">已完成项 <i class="el-icon-circle-check"></i></span>
               </div>
               <draggable v-model="list3" v-bind="{
                 animation: 200,
@@ -59,10 +59,10 @@
                 disabled: false,
                 ghostClass: 'ghost'
               }">
-                <el-card v-for="(i, index) in list3" :key="index" style="width: 100%; margin: 10px 0;" shadow="hover">
+                <el-card v-for="(i, index) in list3" :key="index" style="margin: 5px 0;" shadow="hover">
                   <el-tag :type="i.import === '一般' ? 'primary' : i.import === '重要' ? 'warning' : 'danger'"
                     style="margin:0 20px 0 0;">{{ i.import }}</el-tag>
-                  {{ i.note }}
+                  <span style="font-size: 14px; color: #67C23A">{{ i.note }}</span>
                 </el-card>
               </draggable>
             </el-card>
@@ -95,6 +95,12 @@ export default {
         this.list1 = res.data.data1
         this.list2 = res.data.data2
         this.list3 = res.data.data3
+        this.$notify({
+          title: '提示',
+          message: '便签中的事件卡片可以互相拖动',
+          type: 'success',
+          duration: 6000
+        });
       });
   },
   data() {

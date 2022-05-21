@@ -16,13 +16,12 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import SideBar from '@/components/SideBar.vue'
 import HeadBar from '@/components/HeadBar.vue'
 import TagBar from '@/components/TagBar.vue'
 
 export default {
-    name: 'HomeView',
+    name: 'ExportExcel',
     components: {
         SideBar,
         HeadBar,
