@@ -4,7 +4,7 @@ import store from '../store'
 import HomeView from '../views/HomeView.vue'
 import NoteView from '../views/NoteView.vue'
 import CheckView from '../views/CheckView.vue'
-import ExportExcel from '../views/ExportExcel.vue'
+import DataExport from '../views/DataExport.vue'
 import LoginView from '../views/LoginView.vue'
 import Page404 from '../views/Page404.vue'
 
@@ -27,9 +27,9 @@ const routes = [
     component: CheckView
   },
   {
-    path: '/tool/excel',
-    name: 'excel',
-    component: ExportExcel
+    path: '/tool/export',
+    name: 'export',
+    component: DataExport
   },
   {
     path: '/login',

@@ -99,7 +99,7 @@ export default {
           title: '提示',
           message: '便签中的事件卡片可以互相拖动',
           type: 'success',
-          duration: 6000
+          duration: 4000
         });
       });
   },

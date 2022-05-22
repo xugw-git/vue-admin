@@ -78,7 +78,8 @@
                             </el-select>
                         </el-form-item>
                         <el-form-item label="标题" prop="title">
-                            <el-input v-model="addForm.title" clearable style="width: 400px"></el-input>
+                            <el-input v-model="addForm.title" placeholder="输入标题" clearable style="width: 400px">
+                            </el-input>
                         </el-form-item>
                     </el-form>
                     <div slot="footer">

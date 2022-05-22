@@ -19,8 +19,7 @@
         <span>工具</span>
       </template>
       <el-menu-item-group>
-        <el-menu-item index="4-1" @click="linkRoute('excel')"><i class="el-icon-printer"></i>导出 Excel
-        </el-menu-item>
+        <el-menu-item index="4-1" @click="linkRoute('export')"><i class="el-icon-printer"></i>数据导出</el-menu-item>
       </el-menu-item-group>
     </el-submenu>
   </el-menu>

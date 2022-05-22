@@ -23,7 +23,7 @@
                   </div>
                 </div>
                 <el-divider content-position="left"><i class="el-icon-setting"></i> 依赖</el-divider>
-                <div style="margin: 50px;">
+                <div style="margin: 30px;">
                   <el-tag style="margin: 5px 5px 0 0;">vue</el-tag>
                   <el-tag style="margin: 5px 5px 0 0;">element-ui</el-tag>
                   <el-tag style="margin: 5px 5px 0 0;">vue-router</el-tag>
@@ -35,7 +35,7 @@
                   <el-tag style="margin: 5px 5px 0 0;">vuedraggable</el-tag>
                 </div>
                 <el-divider content-position="left"><i class="el-icon-document"></i> 语言</el-divider>
-                <div style="padding: 10px 50px 20px 50px">
+                <div style="padding: 10px 80px 20px 80px">
                   <el-tag type="success">Vue</el-tag>
                   <el-progress :percentage="89.5" color="#67C23A"></el-progress>
                   <el-tag type="warning">JavaScript</el-tag>

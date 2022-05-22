@@ -34,7 +34,7 @@
                         <span>工具</span>
                     </template>
                     <el-menu-item-group>
-                        <el-menu-item index="4-1" @click="linkRoute('excel')"><i class="el-icon-printer"></i>导出 Excel
+                        <el-menu-item index="4-1" @click="linkRoute('export')"><i class="el-icon-printer"></i>数据导出
                         </el-menu-item>
                     </el-menu-item-group>
                 </el-submenu>
@@ -67,7 +67,7 @@ export default {
     },
     computed: {
         crumbList() {
-            const crumbTrans = { home: '首页', note: '便签', check: '审核', tool: '工具', excel: '导出 Excel' }
+            const crumbTrans = { home: '首页', note: '便签', check: '审核', tool: '工具', export: '数据导出' }
             let tempList = this.$route.path.split('/').filter(i => i !== '' && isNaN(i))
             tempList = tempList.map(i => i = crumbTrans[i]);
             tempList.unshift('首页')

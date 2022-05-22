@@ -27,6 +27,17 @@ const checkData = Mock.mock({
     }]
 })
 
+const excelData = Mock.mock({
+    "data|10": [{
+        "id|+1": 1,
+        'title': '@title(4, 8)',
+        'time': '@datetime',
+        'name|1': '@cname',
+        'rate': '@integer(1, 5)',
+        'status|1': ['草稿', '已发布']
+    }]
+})
 
 Mock.mock('/notedata', 'get', noteData)
 Mock.mock('/checkdata', 'get', checkData)
+Mock.mock('/exceldata', 'get', excelData)
