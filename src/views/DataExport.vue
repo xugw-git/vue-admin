@@ -14,8 +14,8 @@
                     <el-select v-model="bookType" style="width: 100px;">
                         <el-option v-for="item in typeOption" :key="item" :label="item" :value="item" />
                     </el-select>
-                    <el-button @click="handleDownload" plain type="primary" style="margin: 0px; width: 100px;">导出 <i
-                            class="el-icon-printer"></i>
+                    <el-button :loading="loading" @click="handleDownload" plain type="primary"
+                        style="margin: 0px; width: 100px;">导出 <i class="el-icon-printer"></i>
                     </el-button>
                 </template>
                 <el-table :data="tableData" :highlight-current-row="true" style="width: 100%" stripe border>
@@ -52,7 +52,7 @@ import TagBar from '@/components/TagBar.vue'
 import axios from "axios"
 
 export default {
-    name: 'ExportExcel',
+    name: 'DataExport',
     components: {
         SideBar,
         HeadBar,
@@ -64,6 +64,7 @@ export default {
             filename: '',
             typeOption: ['xlsx', 'csv', 'txt'],
             bookType: 'xlsx',
+            loading: false
         }
     },
     mounted() {
@@ -75,6 +76,7 @@ export default {
     },
     methods: {
         handleDownload() {
+            this.loading = true
             import('@/untils/Export2Excel').then(excel => {
                 const tHeader = ['序号', '标题', '时间', '作者', '评分', '状态']
                 const filterVal = ['id', 'title', 'time', 'name', 'rate', 'status']
@@ -85,13 +87,18 @@ export default {
                     filename: this.filename,
                     bookType: this.bookType
                 })
+                this.$message({
+                    message: '数据导出成功',
+                    type: 'success'
+                })
+                this.loading = false
             })
         },
         formatJson(filterVal, jsonData) {
             return jsonData.map(v => filterVal.map(j => {
                 return v[j]
             }))
-        }
+        },
     }
 }
 </script>

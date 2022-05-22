@@ -12,7 +12,7 @@
 export default {
     data() {
         return {
-            crumbTrans: { home: '首页', note: '便签', check: '审核', tool: '工具', export: '数据导出' },
+            crumbTrans: { home: '首页', note: '便签', check: '审核', tool: '工具', export: '数据导出', upload: '数据导入' },
         }
     },
     computed: {

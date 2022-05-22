@@ -37,6 +37,10 @@
                         <el-menu-item index="4-1" @click="linkRoute('export')"><i class="el-icon-printer"></i>数据导出
                         </el-menu-item>
                     </el-menu-item-group>
+                    <el-menu-item-group>
+                        <el-menu-item index="4-2" @click="linkRoute('upload')"><i class="el-icon-printer"></i>数据导入
+                        </el-menu-item>
+                    </el-menu-item-group>
                 </el-submenu>
             </el-menu>
         </el-drawer>
@@ -67,7 +71,7 @@ export default {
     },
     computed: {
         crumbList() {
-            const crumbTrans = { home: '首页', note: '便签', check: '审核', tool: '工具', export: '数据导出' }
+            const crumbTrans = { home: '首页', note: '便签', check: '审核', tool: '工具', export: '数据导出', upload: '数据导入' }
             let tempList = this.$route.path.split('/').filter(i => i !== '' && isNaN(i))
             tempList = tempList.map(i => i = crumbTrans[i]);
             tempList.unshift('首页')

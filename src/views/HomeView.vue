@@ -33,6 +33,8 @@
                   <el-tag style="margin: 5px 5px 0 0;">axios</el-tag>
                   <el-tag style="margin: 5px 5px 0 0;">mockjs</el-tag>
                   <el-tag style="margin: 5px 5px 0 0;">vuedraggable</el-tag>
+                  <el-tag style="margin: 5px 5px 0 0;">xlsx</el-tag>
+                  <el-tag style="margin: 5px 5px 0 0;">file-saver</el-tag>
                 </div>
                 <el-divider content-position="left"><i class="el-icon-document"></i> 语言</el-divider>
                 <div style="padding: 10px 80px 20px 80px">

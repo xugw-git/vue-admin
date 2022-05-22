@@ -5,6 +5,7 @@ import HomeView from '../views/HomeView.vue'
 import NoteView from '../views/NoteView.vue'
 import CheckView from '../views/CheckView.vue'
 import DataExport from '../views/DataExport.vue'
+import ExcelUpload from '../views/ExcelUpload.vue'
 import LoginView from '../views/LoginView.vue'
 import Page404 from '../views/Page404.vue'
 
@@ -30,6 +31,11 @@ const routes = [
     path: '/tool/export',
     name: 'export',
     component: DataExport
+  },
+  {
+    path: '/tool/upload',
+    name: 'upload',
+    component: ExcelUpload
   },
   {
     path: '/login',
