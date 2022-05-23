@@ -8,7 +8,7 @@
                 <HeadBar></HeadBar>
             </el-header>
             <TagBar></TagBar>
-            <el-main style="background-color:#EEEEEE;">
+            <el-main>
                 <template>
                     <el-input v-model="filename" placeholder="文件名" clearable style="width: 100px"></el-input>
                     <el-select v-model="bookType" style="width: 100px;">

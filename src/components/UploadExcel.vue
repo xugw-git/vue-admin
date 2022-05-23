@@ -1,9 +1,11 @@
 <template>
-  <div>
-    <input ref="excel-upload-input" class="excel-upload-input" type="file" accept=".xlsx, .xls" @change="handleClick">
-    <div class="drop" @click="handleUpload" @drop="handleDrop" @dragover="handleDragover" @dragenter="handleDragover">
-      <i class="el-icon-upload"></i> 点击或拖动 Excel 文件至此处
-    </div>
+  <div style="text-align:center;">
+    <el-upload action="" ref="excelUpload" accept=".xlsx, .xls" :drag="true" :limit="1" :on-exceed="limitTip"
+      :show-file-list="false" :before-upload="beforeUpload">
+      <i class="el-icon-upload"></i>
+      <div class="el-upload__text">将文件拖到此处，或点击上传</div>
+      <div class="el-upload__tip" slot="tip">只能上传xlsx/xls文件，且不超过1mb</div>
+    </el-upload>
   </div>
 </template>
 
@@ -12,12 +14,10 @@ import XLSX from 'xlsx'
 
 export default {
   props: {
-    beforeUpload: Function, // eslint-disable-line
-    onSuccess: Function// eslint-disable-line
+    getData: Function
   },
   data() {
     return {
-      loading: false,
       excelData: {
         header: null,
         results: null
@@ -25,58 +25,19 @@ export default {
     }
   },
   methods: {
-    generateData({ header, results }) {
-      this.excelData.header = header
-      this.excelData.results = results
-      this.onSuccess && this.onSuccess(this.excelData)
-    },
-    handleDrop(e) {
-      e.stopPropagation()
-      e.preventDefault()
-      if (this.loading) return
-      const files = e.dataTransfer.files
-      if (files.length !== 1) {
-        this.$message.error('只能上传一个文件')
-        return
-      }
-      const rawFile = files[0] // only use files[0]
-
-      if (!this.isExcel(rawFile)) {
-        this.$message.error('只支持 xlsx、xls 等文件')
+    beforeUpload(rawFile) {
+      const isLt1M = rawFile.size / 1024 / 1024 < 1
+      if (isLt1M) {
+        this.readerData(rawFile)
+      } else {
+        this.$message({
+          message: '导入的文件过大',
+          type: 'warning'
+        })
         return false
-      }
-      this.upload(rawFile)
-      e.stopPropagation()
-      e.preventDefault()
-    },
-    handleDragover(e) {
-      e.stopPropagation()
-      e.preventDefault()
-      e.dataTransfer.dropEffect = 'copy'
-    },
-    handleUpload() {
-      this.$refs['excel-upload-input'].click()
-    },
-    handleClick(e) {
-      const files = e.target.files
-      const rawFile = files[0] // only use files[0]
-      if (!rawFile) return
-      this.upload(rawFile)
-    },
-    upload(rawFile) {
-      this.$refs['excel-upload-input'].value = null // fix can't select the same excel
-
-      if (!this.beforeUpload) {
-        this.readerData(rawFile)
-        return
-      }
-      const before = this.beforeUpload(rawFile)
-      if (before) {
-        this.readerData(rawFile)
       }
     },
     readerData(rawFile) {
-      this.loading = true
       return new Promise((resolve, reject) => {
         const reader = new FileReader()
         reader.onload = e => {
@@ -87,7 +48,6 @@ export default {
           const header = this.getHeaderRow(worksheet)
           const results = XLSX.utils.sheet_to_json(worksheet)
           this.generateData({ header, results })
-          this.loading = false
           resolve()
         }
         reader.readAsArrayBuffer(rawFile)
@@ -108,29 +68,17 @@ export default {
       }
       return headers
     },
-    isExcel(file) {
-      return /\.(xlsx|xls|csv)$/.test(file.name)
-    }
+    generateData({ header, results }) {
+      this.excelData.header = header
+      this.excelData.results = results
+      this.getData && this.getData(this.excelData)
+    },
+    limitTip() {
+      this.$message({
+        message: '只能导入一个文件',
+        type: 'warning'
+      })
+    },
   }
 }
 </script>
-
-<style scoped>
-.excel-upload-input {
-  display: none;
-  z-index: -9999;
-}
-
-.drop {
-  border: 2px dashed #bbb;
-  width: 600px;
-  height: 160px;
-  line-height: 160px;
-  margin: 0 auto;
-  font-size: 24px;
-  border-radius: 5px;
-  text-align: center;
-  color: #bbb;
-  position: relative;
-}
-</style>

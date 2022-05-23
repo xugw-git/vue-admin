@@ -1,5 +1,5 @@
 <template>
-    <div class="tag-group" style="background-color:#EEEEEE; padding-left: 20px;">
+    <div class="tag-group" style="padding-left: 20px;">
         <el-tag @close="closeTag(tag)" @click="selectTag(tag)" v-for="(tag, index) in tags" :key="index"
             :effect="tag === currentTag ? 'dark' : 'plain'" closable>
             {{ tag.split('_').length === 1 ? crumbTrans[tag] : crumbTrans[tag.split('_')[0]] + '-' + tag.split('_')[1]
@@ -12,7 +12,7 @@
 export default {
     data() {
         return {
-            crumbTrans: { home: '首页', note: '便签', check: '审核', tool: '工具', export: '数据导出', upload: '数据导入' },
+            crumbTrans: { home: '首页', note: '便签', check: '审核', common: '常用图表', barrace: '动态柱图', export: '数据导出', upload: '数据导入' },
         }
     },
     computed: {

@@ -8,7 +8,7 @@
         <HeadBar></HeadBar>
       </el-header>
       <TagBar></TagBar>
-      <el-main style="background-color:#EEEEEE;">
+      <el-main>
         <el-row :gutter="20">
           <el-col :lg="8">
             <el-card style="margin-bottom: 20px">
@@ -97,9 +97,10 @@ export default {
         this.list3 = res.data.data3
         this.$notify({
           title: '提示',
-          message: '便签中的事件卡片可以互相拖动',
+          message: '便签中的事件卡片可以直接拖动',
           type: 'success',
-          duration: 4000
+          duration: 3000,
+          offset: 100
         });
       });
   },

@@ -8,7 +8,7 @@
                 <HeadBar></HeadBar>
             </el-header>
             <TagBar></TagBar>
-            <el-main style="background-color:#EEEEEE;">
+            <el-main>
                 <template>
                     <el-select v-model="statusSelect" placeholder="状态" clearable style="width: 80px;">
                         <el-option v-for="item in statusOption" :key="item" :label="item" :value="item" />

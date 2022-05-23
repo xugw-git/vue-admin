@@ -8,8 +8,8 @@
                 <HeadBar></HeadBar>
             </el-header>
             <TagBar></TagBar>
-            <el-main style="background-color:#EEEEEE;">
-                <upload-excel :on-success="handleSuccess" :before-upload="beforeUpload" />
+            <el-main>
+                <upload-excel :getData="getTableData" />
                 <el-table :data="tableData" stripe border :highlight-current-row="true"
                     style="width: 100%;margin-top:20px;">
                     <el-table-column v-for="item of tableHeader" :key="item" :prop="item" :label="item" />
@@ -40,24 +40,13 @@ export default {
         }
     },
     methods: {
-        beforeUpload(file) {
-            const isLt1M = file.size / 1024 / 1024 < 1
-            if (isLt1M) {
-                this.$message({
-                    message: '数据导入成功',
-                    type: 'success'
-                })
-                return true
-            }
-            this.$message({
-                message: '导入的文件过大',
-                type: 'warning'
-            })
-            return false
-        },
-        handleSuccess({ results, header }) {
+        getTableData({ results, header }) {
             this.tableData = results
             this.tableHeader = header
+            this.$message({
+                message: '数据导入成功',
+                type: 'success'
+            })
         }
     }
 }

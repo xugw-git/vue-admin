@@ -30,15 +30,30 @@
                 </el-menu-item>
                 <el-submenu index="4">
                     <template slot="title">
-                        <i class="el-icon-s-tools"></i>
-                        <span>工具</span>
+                        <i class="el-icon-s-data"></i>
+                        <span>图表</span>
                     </template>
                     <el-menu-item-group>
-                        <el-menu-item index="4-1" @click="linkRoute('export')"><i class="el-icon-printer"></i>数据导出
+                        <el-menu-item index="4-1" @click="linkRoute('common')"><i class="el-icon-pie-chart"></i>常用类型
                         </el-menu-item>
                     </el-menu-item-group>
                     <el-menu-item-group>
-                        <el-menu-item index="4-2" @click="linkRoute('upload')"><i class="el-icon-printer"></i>数据导入
+                        <el-menu-item index="4-2" @click="linkRoute('barrace')"><i
+                                class="el-icon-data-analysis"></i>动态排序
+                        </el-menu-item>
+                    </el-menu-item-group>
+                </el-submenu>
+                <el-submenu index="5">
+                    <template slot="title">
+                        <i class="el-icon-s-tools"></i>
+                        <span>功能</span>
+                    </template>
+                    <el-menu-item-group>
+                        <el-menu-item index="5-1" @click="linkRoute('export')"><i class="el-icon-printer"></i>数据导出
+                        </el-menu-item>
+                    </el-menu-item-group>
+                    <el-menu-item-group>
+                        <el-menu-item index="5-2" @click="linkRoute('upload')"><i class="el-icon-upload"></i>数据导入
                         </el-menu-item>
                     </el-menu-item-group>
                 </el-submenu>
@@ -71,7 +86,9 @@ export default {
     },
     computed: {
         crumbList() {
-            const crumbTrans = { home: '首页', note: '便签', check: '审核', tool: '工具', export: '数据导出', upload: '数据导入' }
+            const crumbTrans = {
+                home: '首页', note: '便签', check: '审核', charts: '图表', common: '常用类型', barrace: '动态排序', function: '功能', export: '数据导出', upload: '数据导入'
+            }
             let tempList = this.$route.path.split('/').filter(i => i !== '' && isNaN(i))
             tempList = tempList.map(i => i = crumbTrans[i]);
             tempList.unshift('首页')
