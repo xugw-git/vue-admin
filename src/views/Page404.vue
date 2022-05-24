@@ -9,9 +9,7 @@
 </template>
 
 <script>
-
 export default {
-  name: 'Page404',
   methods: {
     linkHome() {
       this.$router.push({ name: 'home' })

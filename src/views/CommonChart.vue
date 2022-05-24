@@ -10,22 +10,32 @@
             <TagBar></TagBar>
             <el-main>
                 <el-row :gutter="20">
-                    <el-col :lg="24">
+                    <el-col :lg="16">
                         <el-card style="margin-bottom: 20px">
-                            <div ref="lineChart" style="width: 100%; height: 300px;"></div>
+                            <div ref="lineChart" style="width: 100%; height: 350px;"></div>
                         </el-card>
-                        <el-row :gutter="20">
-                            <el-col :lg="12" :md="12">
-                                <el-card style="margin-bottom: 20px">
-                                    <div ref="pieChart" style="width: 100%; height: 300px;"></div>
-                                </el-card>
-                            </el-col>
-                            <el-col :lg="12" :md="12">
-                                <el-card style="margin-bottom: 20px">
-                                    <div ref="barChart" style="width: 100%; height: 300px;"></div>
-                                </el-card>
-                            </el-col>
-                        </el-row>
+                    </el-col>
+                    <el-col :lg="8">
+                        <el-card style="margin-bottom: 20px">
+                            <div ref="radarChart" style="width: 100%; height: 350px;"></div>
+                        </el-card>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="20">
+                    <el-col :lg="8">
+                        <el-card style="margin-bottom: 20px">
+                            <div ref="funnelChart" style="width: 100%; height: 350px;"></div>
+                        </el-card>
+                    </el-col>
+                    <el-col :lg="8">
+                        <el-card style="margin-bottom: 20px">
+                            <div ref="pieChart" style="width: 100%; height: 350px;"></div>
+                        </el-card>
+                    </el-col>
+                    <el-col :lg="8">
+                        <el-card style="margin-bottom: 20px">
+                            <div ref="barChart" style="width: 100%; height: 350px;"></div>
+                        </el-card>
                     </el-col>
                 </el-row>
             </el-main>
@@ -40,7 +50,6 @@ import HeadBar from '@/components/HeadBar.vue'
 import TagBar from '@/components/TagBar.vue'
 
 export default {
-    name: 'HomeView',
     components: {
         SideBar,
         HeadBar,
@@ -83,6 +92,38 @@ export default {
                     },
                 ]
             },
+            radarOption: {
+                legend: {
+                    data: ['Allocated Budget', 'Actual Spending']
+                },
+                radar: {
+                    shape: 'circle',
+                    indicator: [
+                        { name: 'Sales', max: 6500 },
+                        { name: 'Administration', max: 16000 },
+                        { name: 'Information Technology', max: 30000 },
+                        { name: 'Customer Support', max: 38000 },
+                        { name: 'Development', max: 52000 },
+                        { name: 'Marketing', max: 25000 }
+                    ]
+                },
+                series: [
+                    {
+                        name: 'Budget vs spending',
+                        type: 'radar',
+                        data: [
+                            {
+                                value: [4200, 3000, 20000, 35000, 50000, 18000],
+                                name: 'Allocated Budget'
+                            },
+                            {
+                                value: [5000, 14000, 28000, 26000, 42000, 21000],
+                                name: 'Actual Spending'
+                            }
+                        ]
+                    }
+                ]
+            },
             pieOption: {
                 tooltip: {
                     trigger: 'item'
@@ -118,6 +159,58 @@ export default {
                             { value: 735, name: 'JavaScript' },
                             { value: 1048, name: 'Vue' },
                             { value: 580, name: 'elementUI' },
+                        ]
+                    }
+                ]
+            },
+            funnelOption: {
+                tooltip: {
+                    trigger: 'item',
+                    formatter: '{a} <br/>{b} : {c}%'
+                },
+                legend: {
+                    data: ['Show', 'Click', 'Visit', 'Inquiry', 'Order']
+                },
+                series: [
+                    {
+                        name: 'Funnel',
+                        type: 'funnel',
+                        left: '10%',
+                        top: 60,
+                        bottom: 60,
+                        width: '80%',
+                        min: 0,
+                        max: 100,
+                        minSize: '0%',
+                        maxSize: '100%',
+                        sort: 'descending',
+                        gap: 2,
+                        label: {
+                            show: true,
+                            position: 'inside'
+                        },
+                        labelLine: {
+                            length: 10,
+                            lineStyle: {
+                                width: 1,
+                                type: 'solid'
+                            }
+                        },
+                        itemStyle: {
+                            borderColor: '#fff',
+                            borderWidth: 1
+                        },
+                        emphasis: {
+                            label: {
+                                fontSize: 20
+                            }
+                        },
+                        data: [
+                            { value: 60, name: 'Visit' },
+                            { value: 40, name: 'Inquiry' },
+                            { value: 20, name: 'Order' },
+                            { value: 80, name: 'Click' },
+                            { value: 100, name: 'Show' }
                         ]
                     }
                 ]
@@ -188,14 +281,27 @@ export default {
     mounted() {
         let lineChart = this.$echarts.init(this.$refs.lineChart);
         this.lineOption && lineChart.setOption(this.lineOption);
+        let radarChart = this.$echarts.init(this.$refs.radarChart);
+        this.radarOption && radarChart.setOption(this.radarOption);
         let pieChart = this.$echarts.init(this.$refs.pieChart);
         this.pieOption && pieChart.setOption(this.pieOption);
+        let funnelChart = this.$echarts.init(this.$refs.funnelChart);
+        this.funnelOption && funnelChart.setOption(this.funnelOption);
         let barChart = this.$echarts.init(this.$refs.barChart);
         this.barOption && barChart.setOption(this.barOption);
+        let timer = null
         window.onresize = () => {
-            lineChart.resize()
-            pieChart.resize()
-            barChart.resize()
+            if (timer !== null) {
+                clearTimeout(timer)
+            }
+            timer = setTimeout(() => {
+                lineChart.resize()
+                radarChart.resize()
+                pieChart.resize()
+                funnelChart.resize()
+                barChart.resize()
+                timer = null
+            }, 500)
         }
     }
 }

@@ -7,10 +7,12 @@
                 <el-breadcrumb-item v-for="(item, index) in crumbList" :key="index">{{ item }}</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
-        <div class="hidden-md-and-up">
+        <div class="hidden-md-and-up" style="display:flex; align-items:center;">
             <el-button type="primary" plain @click="drawerMenu = true" icon="el-icon-menu" size="mini">
             </el-button>
-            <span style="margin-left: 20px;">首页</span>
+            <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-left: 20px;">
+                <el-breadcrumb-item v-for="(item, index) in crumbList" :key="index">{{ item }}</el-breadcrumb-item>
+            </el-breadcrumb>
         </div>
 
         <el-drawer title="我是标题" :visible.sync="drawerMenu" :with-header="false" direction="ltr" size=200px>
@@ -24,7 +26,7 @@
                     <i class="el-icon-date"></i>
                     <span slot="title">便签</span>
                 </el-menu-item>
-                <el-menu-item index="3" @click="linkRoute('check')">
+                <el-menu-item index="3" @click="linkRoute('check'); SetMarkFalse()">
                     <i class="el-icon-s-check"></i>
                     <span slot="title">审核</span>
                 </el-menu-item>
@@ -77,7 +79,6 @@
 
 <script>
 export default {
-    name: 'HeadBar',
     data() {
         return {
             circleUrl: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
@@ -93,6 +94,9 @@ export default {
             tempList = tempList.map(i => i = crumbTrans[i]);
             tempList.unshift('首页')
             return tempList
+        },
+        isLargeScreen() {
+            return this.$store.state.DialogMark.isLargeScreen
         }
     },
     methods: {
@@ -106,6 +110,9 @@ export default {
             this.$store.commit('RemoveToken')
             this.$router.push({ name: 'login' })
         },
+        SetMarkFalse() {
+            this.$store.commit("SetFalse")
+        }
     }
 }
 </script>

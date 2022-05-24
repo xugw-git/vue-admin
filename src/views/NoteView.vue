@@ -81,7 +81,6 @@ import TagBar from '@/components/TagBar.vue'
 import axios from "axios"
 
 export default {
-  name: 'NoteView',
   components: {
     draggable,
     SideBar,

@@ -60,7 +60,8 @@
                     style="margin-top: 20px; margin-bottom: 20px; justify-content:center; display: flex;">
                 </el-pagination>
 
-                <el-dialog :title="isCreate === true ? '新增' : '更新'" :visible.sync="dialogEdit">
+                <el-dialog :title="isCreate === true ? '新增' : '更新'" :visible.sync="dialogEdit"
+                    :width="isLargeScreen === true ? '50%' : '95%'">
                     <el-form :model="addForm" :rules="rules" ref="dialogForm">
                         <el-form-item label="时间" prop="time">
                             <el-date-picker v-model="addForm.time" type="datetime" placeholder="选择日期时间"
@@ -78,7 +79,8 @@
                             </el-select>
                         </el-form-item>
                         <el-form-item label="标题" prop="title">
-                            <el-input v-model="addForm.title" placeholder="输入标题" clearable style="width: 400px">
+                            <el-input v-model="addForm.title" placeholder="输入标题" clearable
+                                :style="isLargeScreen === true ? 'width: 400px' : 'width: 200px'">
                             </el-input>
                         </el-form-item>
                     </el-form>
@@ -102,7 +104,6 @@ import TagBar from '@/components/TagBar.vue'
 import axios from "axios"
 
 export default {
-    name: 'CheckView',
     components: {
         SideBar,
         HeadBar,
@@ -142,6 +143,11 @@ export default {
                     { required: true, message: '请选择状态', trigger: 'change' }
                 ],
             }
+        }
+    },
+    computed: {
+        isLargeScreen() {
+            return this.$store.state.DialogMark.isLargeScreen
         }
     },
     mounted() {

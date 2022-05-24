@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import HandleCollapse from './sidebar.js'
-import HandleTag from './tagbar.js'
-import UserToken from './user.js'
+import SiderbarCollapse from './SiderbarCollapse.js'
+import TagbarDisplay from './TagbarDisplay.js'
+import UserToken from './UserToken.js'
+import DialogMark from './CheckviewDialog.js'
 
 Vue.use(Vuex)
 
@@ -12,8 +13,9 @@ export default new Vuex.Store({
   mutations: {},
   actions: {},
   modules: {
-    HandleCollapse,
-    HandleTag,
-    UserToken
+    SiderbarCollapse,
+    TagbarDisplay,
+    UserToken,
+    DialogMark
   }
 })

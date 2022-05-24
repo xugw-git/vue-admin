@@ -26,10 +26,7 @@
 </template>
 
 <script>
-import Mock from 'mockjs'
-
 export default {
-    name: 'LoginView',
     data() {
         return {
             loginForm: {

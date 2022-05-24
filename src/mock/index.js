@@ -15,7 +15,7 @@ const noteData = Mock.mock({
     }]
 })
 
-const nameList = [Mock.Random.cname(3), Mock.Random.cname(), Mock.Random.cname(), Mock.Random.cname(), Mock.Random.cname(),]
+const nameList = [Mock.Random.cname(), Mock.Random.cname(), Mock.Random.cname(), Mock.Random.cname(), Mock.Random.cname(),]
 const checkData = Mock.mock({
     "data|100": [{
         "id|+1": 1,

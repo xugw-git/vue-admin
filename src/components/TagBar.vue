@@ -17,10 +17,10 @@ export default {
     },
     computed: {
         tags() {
-            return this.$store.state.HandleTag.tagList
+            return this.$store.state.TagbarDisplay.tagList
         },
         currentTag() {
-            return this.$store.state.HandleTag.currentTag
+            return this.$store.state.TagbarDisplay.currentTag
         },
     },
     methods: {

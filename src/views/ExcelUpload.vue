@@ -26,7 +26,6 @@ import TagBar from '@/components/TagBar.vue'
 import UploadExcel from '@/components/UploadExcel.vue'
 
 export default {
-    name: 'ExcelUpload',
     components: {
         SideBar,
         HeadBar,

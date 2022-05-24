@@ -9,7 +9,7 @@
       <i class="el-icon-date"></i>
       <span slot="title">便签</span>
     </el-menu-item>
-    <el-menu-item index="3" @click="linkRoute('check')">
+    <el-menu-item index="3" @click="linkRoute('check'); SetMarkTrue()">
       <i class="el-icon-s-check"></i>
       <span slot="title">审核</span>
     </el-menu-item>
@@ -43,15 +43,20 @@
 
 <script>
 export default {
-  name: 'SideBar',
   computed: {
     isCollapse() {
-      return this.$store.state.HandleCollapse.isCollapse
+      return this.$store.state.SiderbarCollapse.isCollapse
+    },
+    isLargeScreen() {
+      return this.$store.state.DialogMark.isLargeScreen
     }
   },
   methods: {
     linkRoute(item) {
       this.$router.push({ name: item })
+    },
+    SetMarkTrue() {
+      this.$store.commit("SetTrue")
     }
   }
 }

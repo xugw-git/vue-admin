@@ -52,7 +52,6 @@ import TagBar from '@/components/TagBar.vue'
 import axios from "axios"
 
 export default {
-    name: 'DataExport',
     components: {
         SideBar,
         HeadBar,
@@ -77,7 +76,7 @@ export default {
     methods: {
         handleDownload() {
             this.loading = true
-            import('@/untils/Export2Excel').then(excel => {
+            import('@/untils/DataExport').then(excel => {
                 const tHeader = ['序号', '标题', '时间', '作者', '评分', '状态']
                 const filterVal = ['id', 'title', 'time', 'name', 'rate', 'status']
                 const data = this.formatJson(filterVal, this.tableData)

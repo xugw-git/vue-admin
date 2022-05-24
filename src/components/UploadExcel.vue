@@ -1,10 +1,11 @@
 <template>
   <div style="text-align:center;">
-    <el-upload action="" ref="excelUpload" accept=".xlsx, .xls" :drag="true" :limit="1" :on-exceed="limitTip"
-      :show-file-list="false" :before-upload="beforeUpload">
+    <el-upload action="" ref="excelUpload"
+      accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" :drag="true"
+      :limit="1" :on-exceed="limitTip" :show-file-list="false" :before-upload="beforeUpload">
       <i class="el-icon-upload"></i>
       <div class="el-upload__text">将文件拖到此处，或点击上传</div>
-      <div class="el-upload__tip" slot="tip">只能上传xlsx/xls文件，且不超过1mb</div>
+      <div class="el-upload__tip" slot="tip">只能上传xlsx/xls文件，且不超过1Mb</div>
     </el-upload>
   </div>
 </template>
