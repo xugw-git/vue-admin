@@ -4,6 +4,7 @@ import SiderbarCollapse from './SiderbarCollapse.js'
 import TagbarDisplay from './TagbarDisplay.js'
 import UserToken from './UserToken.js'
 import DialogMark from './CheckviewDialog.js'
+import ChartsMark from './ChartsMark.js'
 
 Vue.use(Vuex)
 
@@ -16,6 +17,7 @@ export default new Vuex.Store({
     SiderbarCollapse,
     TagbarDisplay,
     UserToken,
-    DialogMark
+    DialogMark,
+    ChartsMark
   }
 })

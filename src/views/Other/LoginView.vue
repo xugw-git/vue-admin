@@ -26,6 +26,8 @@
 </template>
 
 <script>
+import Mock from 'mockjs'
+
 export default {
     data() {
         return {

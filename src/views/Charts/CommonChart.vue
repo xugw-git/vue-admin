@@ -99,12 +99,12 @@ export default {
                 radar: {
                     shape: 'circle',
                     indicator: [
-                        { name: 'Sales', max: 6500 },
-                        { name: 'Administration', max: 16000 },
-                        { name: 'Information Technology', max: 30000 },
-                        { name: 'Customer Support', max: 38000 },
-                        { name: 'Development', max: 52000 },
-                        { name: 'Marketing', max: 25000 }
+                        { name: 'Sales' },
+                        { name: 'Administration' },
+                        { name: 'Information Technology' },
+                        { name: 'Customer Support' },
+                        { name: 'Development' },
+                        { name: 'Marketing' }
                     ]
                 },
                 series: [
@@ -158,7 +158,7 @@ export default {
                             { value: 300, name: 'CSS' },
                             { value: 735, name: 'JavaScript' },
                             { value: 1048, name: 'Vue' },
-                            { value: 580, name: 'elementUI' },
+                            { value: 580, name: 'element-ui' },
                         ]
                     }
                 ]
@@ -278,28 +278,41 @@ export default {
             },
         }
     },
+    computed: {
+        lineChart() {
+            return this.$echarts.init(this.$refs.lineChart)
+        },
+        barChart() {
+            return this.$echarts.init(this.$refs.barChart)
+        },
+        pieChart() {
+            return this.$echarts.init(this.$refs.pieChart)
+        },
+        radarChart() {
+            return this.$echarts.init(this.$refs.radarChart)
+        },
+        funnelChart() {
+            return this.$echarts.init(this.$refs.funnelChart)
+        },
+    },
     mounted() {
-        let lineChart = this.$echarts.init(this.$refs.lineChart);
-        this.lineOption && lineChart.setOption(this.lineOption);
-        let radarChart = this.$echarts.init(this.$refs.radarChart);
-        this.radarOption && radarChart.setOption(this.radarOption);
-        let pieChart = this.$echarts.init(this.$refs.pieChart);
-        this.pieOption && pieChart.setOption(this.pieOption);
-        let funnelChart = this.$echarts.init(this.$refs.funnelChart);
-        this.funnelOption && funnelChart.setOption(this.funnelOption);
-        let barChart = this.$echarts.init(this.$refs.barChart);
-        this.barOption && barChart.setOption(this.barOption);
+        this.lineOption && this.lineChart.setOption(this.lineOption)
+        this.radarOption && this.radarChart.setOption(this.radarOption)
+        this.pieOption && this.pieChart.setOption(this.pieOption)
+        this.funnelOption && this.funnelChart.setOption(this.funnelOption)
+        this.barOption && this.barChart.setOption(this.barOption)
+
         let timer = null
         window.onresize = () => {
             if (timer !== null) {
                 clearTimeout(timer)
             }
             timer = setTimeout(() => {
-                lineChart.resize()
-                radarChart.resize()
-                pieChart.resize()
-                funnelChart.resize()
-                barChart.resize()
+                this.lineChart.resize()
+                this.barChart.resize()
+                this.pieChart.resize()
+                this.radarChart.resize()
+                this.funnelChart.resize()
                 timer = null
             }, 500)
         }

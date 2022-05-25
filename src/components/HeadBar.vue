@@ -40,8 +40,13 @@
                         </el-menu-item>
                     </el-menu-item-group>
                     <el-menu-item-group>
-                        <el-menu-item index="4-2" @click="linkRoute('barrace')"><i
-                                class="el-icon-data-analysis"></i>动态排序
+                        <el-menu-item index="4-2" @click="linkRoute('dynamic')"><i
+                                class="el-icon-data-analysis"></i>动态图表
+                        </el-menu-item>
+                    </el-menu-item-group>
+                    <el-menu-item-group>
+                        <el-menu-item index="4-3" @click="linkRoute('editable')"><i
+                                class="el-icon-edit-outline"></i>可编辑图表
                         </el-menu-item>
                     </el-menu-item-group>
                 </el-submenu>
@@ -88,7 +93,7 @@ export default {
     computed: {
         crumbList() {
             const crumbTrans = {
-                home: '首页', note: '便签', check: '审核', charts: '图表', common: '常用类型', barrace: '动态排序', function: '功能', export: '数据导出', upload: '数据导入'
+                home: '首页', note: '便签', check: '审核', charts: '图表', common: '常用类型', dynamic: '动态图表', editable: '可编辑图表', function: '功能', export: '数据导出', upload: '数据导入'
             }
             let tempList = this.$route.path.split('/').filter(i => i !== '' && isNaN(i))
             tempList = tempList.map(i => i = crumbTrans[i]);

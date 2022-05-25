@@ -313,6 +313,11 @@ export default {
       }
     }
   },
+  computed: {
+    clockChart() {
+      return this.$echarts.init(this.$refs.clockChart)
+    }
+  },
   mounted() {
     setInterval(() => {
       let date = new Date();
@@ -320,7 +325,8 @@ export default {
       let minute = date.getMinutes() + second / 60;
       let hour = (date.getHours() % 12) + minute / 60;
       this.clockOption.animationDurationUpdate = 300;
-      clockChart.setOption({
+
+      this.clockChart.setOption({
         series: [
           {
             name: 'hour',
@@ -340,8 +346,9 @@ export default {
         ]
       });
     }, 1000);
-    let clockChart = this.$echarts.init(this.$refs.clockChart);
-    this.clockOption && clockChart.setOption(this.clockOption);
+
+    this.clockOption && this.clockChart.setOption(this.clockOption);
+
     let timer = null
     window.onresize = () => {
       if (timer !== null) {

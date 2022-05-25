@@ -22,7 +22,11 @@
         <el-menu-item index="4-1" @click="linkRoute('common')"><i class="el-icon-pie-chart"></i>常用类型</el-menu-item>
       </el-menu-item-group>
       <el-menu-item-group>
-        <el-menu-item index="4-2" @click="linkRoute('barrace')"><i class="el-icon-data-analysis"></i>动态排序
+        <el-menu-item index="4-2" @click="linkRoute('dynamic')"><i class="el-icon-data-analysis"></i>动态图表
+        </el-menu-item>
+      </el-menu-item-group>
+      <el-menu-item-group>
+        <el-menu-item index="4-3" @click="linkRoute('editable')"><i class="el-icon-edit-outline"></i>可编辑图表
         </el-menu-item>
       </el-menu-item-group>
     </el-submenu>

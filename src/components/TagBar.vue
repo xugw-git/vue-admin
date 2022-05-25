@@ -12,7 +12,7 @@
 export default {
     data() {
         return {
-            crumbTrans: { home: '首页', note: '便签', check: '审核', common: '常用图表', barrace: '动态柱图', export: '数据导出', upload: '数据导入' },
+            crumbTrans: { home: '首页', note: '便签', check: '审核', common: '常用图表', dynamic: '动态图表', editable: '可编辑图表', export: '数据导出', upload: '数据导入' },
         }
     },
     computed: {

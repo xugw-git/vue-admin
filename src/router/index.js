@@ -4,12 +4,13 @@ import store from '../store'
 import HomeView from '../views/HomeView.vue'
 import NoteView from '../views/NoteView.vue'
 import CheckView from '../views/CheckView.vue'
-import CommonChart from '../views/CommonChart.vue'
-import BarRace from '../views/BarRace.vue'
-import DataExport from '../views/DataExport.vue'
-import ExcelUpload from '../views/ExcelUpload.vue'
-import LoginView from '../views/LoginView.vue'
-import Page404 from '../views/Page404.vue'
+import CommonChart from '../views/Charts/CommonChart.vue'
+import DynamicChart from '../views/Charts/DynamicChart.vue'
+import EditableChart from '../views/Charts/EditableChart.vue'
+import DataExport from '../views/Function/DataExport.vue'
+import ExcelUpload from '../views/Function/ExcelUpload.vue'
+import LoginView from '../views/Other/LoginView.vue'
+import Page404 from '../views/Other/Page404.vue'
 
 Vue.use(VueRouter)
 
@@ -35,9 +36,14 @@ const routes = [
     component: CommonChart
   },
   {
-    path: '/charts/barrace',
-    name: 'barrace',
-    component: BarRace
+    path: '/charts/dynamic',
+    name: 'dynamic',
+    component: DynamicChart
+  },
+  {
+    path: '/charts/editable',
+    name: 'editable',
+    component: EditableChart
   },
   {
     path: '/function/export',
