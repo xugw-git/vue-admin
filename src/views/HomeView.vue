@@ -53,7 +53,7 @@
             </el-card>
           </el-col>
           <el-col :lg="8">
-            <el-carousel :interval="4000" type="" height="250px" style="margin-bottom: 20px">
+            <el-carousel :interval="3000" type="" height="250px" style="margin-bottom: 20px">
               <el-carousel-item v-for="(i, index) in carouselImages" :key="index">
                 <img :src="i" class="image" style="height: 100%; width: 100%">
               </el-carousel-item>
@@ -113,6 +113,7 @@ export default {
   },
   data() {
     return {
+      clockTimer: null,
       squareUrl: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
       carouselImages: [
         require('@/assets/img1.jpg'),
@@ -319,7 +320,7 @@ export default {
     }
   },
   mounted() {
-    setInterval(() => {
+    this.clockTimer = setInterval(() => {
       let date = new Date();
       let second = date.getSeconds();
       let minute = date.getMinutes() + second / 60;
@@ -355,10 +356,13 @@ export default {
         clearTimeout(timer)
       }
       timer = setTimeout(() => {
-        clockChart.resize()
+        this.clockChart.resize()
         timer = null
       }, 500)
     }
-  }
+  },
+  beforeDestroy() {
+    clearInterval(this.clockTimer)
+  },
 }
 </script>

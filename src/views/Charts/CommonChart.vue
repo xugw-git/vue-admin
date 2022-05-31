@@ -111,6 +111,9 @@ export default {
                     {
                         name: 'Budget vs spending',
                         type: 'radar',
+                        areaStyle: {
+                            opacity: 0.4
+                        },
                         data: [
                             {
                                 value: [4200, 3000, 20000, 35000, 50000, 18000],
@@ -139,6 +142,11 @@ export default {
                         type: 'pie',
                         radius: ['40%', '70%'],
                         avoidLabelOverlap: false,
+                        itemStyle: {
+                            borderRadius: 10,
+                            borderColor: '#fff',
+                            borderWidth: 1
+                        },
                         label: {
                             show: false,
                             position: 'center'

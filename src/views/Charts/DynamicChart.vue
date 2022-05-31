@@ -52,7 +52,6 @@ import SideBar from '@/components/SideBar.vue'
 import HeadBar from '@/components/HeadBar.vue'
 import TagBar from '@/components/TagBar.vue'
 
-let barTimer = null
 const barData = [];
 const colorList = ['#409EFF', '#67C23A', '#E6A23C', '#F56C6C', '#909399']
 for (let i = 0; i < 5; i++) {
@@ -63,12 +62,10 @@ for (let i = 0; i < 5; i++) {
     });
 }
 
-let lineTimer = null
 const lineA = [100]
 const lineB = [200]
 const lineC = [300]
 
-let dynamicTimer = null
 let app = { count: 11 }
 const categories = (function () {
     let now = new Date();
@@ -114,6 +111,9 @@ export default {
     },
     data() {
         return {
+            barTimer: null,
+            lineTimer: null,
+            dynamicTimer: null,
             barRaceOption: {
                 xAxis: {
                     max: 'dataMax'
@@ -282,11 +282,16 @@ export default {
             }, 500)
         }
     },
+    beforeDestroy() {
+        clearInterval(this.barTimer)
+        clearInterval(this.lineTimer)
+        clearInterval(this.dynamicTimer)
+    },
     methods: {
         getBarRace() {
             this.barRaceOption && this.barRace.setOption(this.barRaceOption)
             if (this.barMark) {
-                barTimer = setInterval(() => {
+                this.barTimer = setInterval(() => {
                     for (var i = 0; i < barData.length; ++i) {
                         if (Math.random() > 0.9) {
                             barData[i].value += Math.round(Math.random() * 500);
@@ -295,16 +300,13 @@ export default {
                         }
                     }
                     this.barRace.setOption({ series: [{ type: 'bar', data: barData }] })
-                    if (barData[0].value > 5000) {
-                        clearInterval(barTimer)
-                    }
                 }, 3000)
             }
         },
         getLineRace() {
             this.lineRaceOption && this.lineRace.setOption(this.lineRaceOption)
             if (this.lineMark) {
-                lineTimer = setInterval(() => {
+                this.lineTimer = setInterval(() => {
                     lineA.push(lineA.slice(-1)[0] + Math.round(Math.random() * 120))
                     lineB.push(lineB.slice(-1)[0] + Math.round(Math.random() * 100))
                     lineC.push(lineC.slice(-1)[0] + Math.round(Math.random() * 80))
@@ -327,16 +329,13 @@ export default {
                             }
                         ]
                     })
-                    if (lineA.slice(-1)[0] > 5000) {
-                        clearInterval(lineTimer)
-                    }
                 }, 2100)
             }
         },
         getDynamicData() {
             this.dynamicOption && this.dynamicData.setOption(this.dynamicOption)
             if (this.dynamicMark) {
-                dynamicTimer = setInterval(() => {
+                this.dynamicTimer = setInterval(() => {
                     let axisData = new Date().toLocaleTimeString().replace(/^\D*/, '');
                     data.shift();
                     data.push(Math.round(Math.random() * 1000));
@@ -364,14 +363,11 @@ export default {
                             }
                         ]
                     })
-                    if (app.count > 100) {
-                        clearInterval(dynamicTimer)
-                    }
                 }, 2100)
             }
         },
         stopBar() {
-            clearInterval(barTimer)
+            clearInterval(this.barTimer)
             this.$store.commit("SetBarMarkFalse")
         },
         startBar() {
@@ -379,7 +375,7 @@ export default {
             this.getBarRace()
         },
         stopLine() {
-            clearInterval(lineTimer)
+            clearInterval(this.lineTimer)
             this.$store.commit("SetLineMarkFalse")
         },
         startLine() {
@@ -387,7 +383,7 @@ export default {
             this.getLineRace()
         },
         stopDynamic() {
-            clearInterval(dynamicTimer)
+            clearInterval(this.dynamicTimer)
             this.$store.commit("SetDynamicMarkFalse")
         },
         startDynamic() {
