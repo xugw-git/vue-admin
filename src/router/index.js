@@ -9,6 +9,8 @@ import DynamicChart from '../views/Charts/DynamicChart.vue'
 import EditableChart from '../views/Charts/EditableChart.vue'
 import DataExport from '../views/Function/DataExport.vue'
 import ExcelUpload from '../views/Function/ExcelUpload.vue'
+import jsplumb from '../views/Function/jsplumb.vue'
+import ToDo from '../views/Function/ToDo.vue'
 import LoginView from '../views/Other/LoginView.vue'
 import Page404 from '../views/Other/Page404.vue'
 
@@ -54,6 +56,16 @@ const routes = [
     path: '/function/upload',
     name: 'upload',
     component: ExcelUpload
+  },
+  {
+    path: '/function/jsplumb',
+    name: 'jsplumb',
+    component: jsplumb
+  },
+  {
+    path: '/function/todo',
+    name: 'todo',
+    component: ToDo
   },
   {
     path: '/login',

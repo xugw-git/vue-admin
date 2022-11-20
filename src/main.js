@@ -8,6 +8,8 @@ import 'element-ui/lib/theme-chalk/index.css';
 import 'element-ui/lib/theme-chalk/display.css';
 import * as echarts from 'echarts';
 Vue.prototype.$echarts = echarts
+import jsPlumb from 'jsplumb'
+Vue.prototype.$jsPlumb = jsPlumb.jsPlumb
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)

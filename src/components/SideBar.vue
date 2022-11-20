@@ -1,6 +1,5 @@
 <template>
-  <el-menu class="el-menu-vertical-demo hidden-sm-and-down" :collapse="isCollapse" background-color="#545c64"
-    text-color="#fff" active-text-color="#ffd04b">
+  <el-menu class="el-menu-vertical-demo hidden-sm-and-down" :collapse="isCollapse" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
     <el-menu-item index="1" @click="linkRoute('home')">
       <i class="el-icon-s-home"></i>
       <span slot="title">首页</span>
@@ -22,12 +21,10 @@
         <el-menu-item index="4-1" @click="linkRoute('common')"><i class="el-icon-pie-chart"></i>常用类型</el-menu-item>
       </el-menu-item-group>
       <el-menu-item-group>
-        <el-menu-item index="4-2" @click="linkRoute('dynamic')"><i class="el-icon-data-analysis"></i>动态图表
-        </el-menu-item>
+        <el-menu-item index="4-2" @click="linkRoute('dynamic')"><i class="el-icon-data-analysis"></i>动态图表 </el-menu-item>
       </el-menu-item-group>
       <el-menu-item-group>
-        <el-menu-item index="4-3" @click="linkRoute('editable')"><i class="el-icon-edit-outline"></i>可编辑图表
-        </el-menu-item>
+        <el-menu-item index="4-3" @click="linkRoute('editable')"><i class="el-icon-edit-outline"></i>可编辑图表 </el-menu-item>
       </el-menu-item-group>
     </el-submenu>
     <el-submenu index="5">
@@ -40,6 +37,12 @@
       </el-menu-item-group>
       <el-menu-item-group>
         <el-menu-item index="5-2" @click="linkRoute('upload')"><i class="el-icon-upload"></i>数据导入</el-menu-item>
+      </el-menu-item-group>
+      <el-menu-item-group>
+        <el-menu-item index="5-3" @click="linkRoute('jsplumb')"><i class="el-icon-position"></i>拖拽连线</el-menu-item>
+      </el-menu-item-group>
+      <el-menu-item-group>
+        <el-menu-item index="5-4" @click="linkRoute('todo')"><i class="el-icon-s-tools"></i>待定</el-menu-item>
       </el-menu-item-group>
     </el-submenu>
   </el-menu>
@@ -68,11 +71,11 @@ export default {
 
 <style>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px
+  width: 200px;
 }
 
 .el-menu-vertical-demo {
   height: 100%;
-  border: none
+  border: none;
 }
 </style>
